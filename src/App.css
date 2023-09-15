@@ -5,11 +5,12 @@
   text-align: center;
 }
 
-th, td {
+th,
+td {
   border: 1px solid black;
   border-collapse: collapse;
-  vertical-align: auto;
-  width: 125px;
+  align-items: center;
+  width: 100px;
 }
 
 .logo {
