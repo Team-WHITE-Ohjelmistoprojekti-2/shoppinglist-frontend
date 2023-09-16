@@ -1,19 +1,29 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
 
 function ProductList() {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
 
-  const fetchProducts = () => {
-    fetch(API_URL)
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error(err));
-  };
+  //const { id } = useParams();
 
   useEffect(() => {
-    fetchProducts();
+    loadProducts();
   }, []);
+
+  const loadProducts = async () => {
+    const result = await axios.get(API_URL);
+    setProduct(result.data);
+  };
+  const deleteProduct = async (id) => {
+    try {
+      await axios.delete(API_URL + id);
+      loadProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
 
   const tableHeader = (
     <thead>
@@ -26,16 +36,20 @@ function ProductList() {
     </thead>
   );
 
-  const listItems = products.map((product) => (
-        <tr key={product.id}>
-          <td>{product.name}</td>
-          <td>{product.quantity}</td>
-          <td>{product.price}</td>
-          <td>{product.details}</td>
-        </tr>
+  const listItems = product.map((product) => (
+    <tr key={product.id}>
+      <td>{product.name}</td>
+      <td>{product.quantity}</td>
+      <td>{product.price}</td>
+      <td>{product.details}</td>
+      <td>
+        <Link to={`/edit/${product.id}`}>Edit</Link>
+        <button onClick={() => deleteProduct(product.id)}>Delete</button>
+      </td>
+    </tr>
   ));
 
-  console.log(products);
+  console.log(product);
   return (
     <table>
       {tableHeader}
