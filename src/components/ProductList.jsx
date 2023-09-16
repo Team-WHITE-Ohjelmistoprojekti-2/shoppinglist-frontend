@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { API_URL, Delete_URL } from "../constants";
+import { PRODUCTS_URL, PRODUCT_URL } from "../constants";
 
 function ProductList() {
   const [product, setProduct] = useState([]);
 
-  // const { id } = useParams();
+ 
 
   useEffect(() => {
     loadProducts();
   }, []);
 
   const loadProducts = async () => {
-    const result = await axios.get(API_URL);
+    const result = await axios.get(PRODUCTS_URL);
     setProduct(result.data);
   };
   const deleteProduct = async (id) => {
-    await axios.delete(`${Delete_URL}/${id}`);
+    await axios.delete(`${PRODUCT_URL}/${id}`);
     loadProducts();
   };
 
@@ -52,6 +52,9 @@ function ProductList() {
     <table>
       {tableHeader}
       <tbody>{listItems}</tbody>
+      <button>
+        <Link to="/addproduct">Add Product</Link>
+      </button>
     </table>
   );
 }

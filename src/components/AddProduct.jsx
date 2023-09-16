@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PRODUCTS_URL } from "../constants";
 
-function EditProduct() {
+function AddProduct() {
   let navigate = useNavigate();
-  const { id } = useParams();
+
   const [product, setProduct] = useState({
     name: "",
     quantity: "",
@@ -18,29 +18,15 @@ function EditProduct() {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    loadProducts();
-  },[]); //ASK [] ?
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`${PRODUCTS_URL}/${id}`, product);
+    await axios.post(PRODUCTS_URL , product);
     navigate("/");
   };
 
-  const loadProducts = async () => {
-    try {
-      const result = await axios.get(`${PRODUCTS_URL}/${id}`);
-      setProduct(result.data);
-    } catch (error) {
-      console.error("Error loading product:", error);
-    }
-  };
-
-  console.log(product);
   return (
     <div>
-      <h2>Editproduct</h2>
+      <h2>Addproduct</h2>
       <form onSubmit={(e) => onSubmit(e)}>
         <div>
           <label>Name</label>
@@ -82,10 +68,10 @@ function EditProduct() {
             onChange={(e) => onInputChange(e)}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Add Product</button>
       </form>
     </div>
   );
 }
 
-export default EditProduct;
+export default AddProduct;
