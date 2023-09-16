@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { API_URL } from "../constants";
+import { API_URL, Delete_URL } from "../constants";
 
 function ProductList() {
   const [product, setProduct] = useState([]);
 
-  //const { id } = useParams();
+  // const { id } = useParams();
 
   useEffect(() => {
     loadProducts();
@@ -17,12 +17,8 @@ function ProductList() {
     setProduct(result.data);
   };
   const deleteProduct = async (id) => {
-    try {
-      await axios.delete(API_URL + id);
-      loadProducts();
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
+    await axios.delete(`${Delete_URL}/${id}`);
+    loadProducts();
   };
 
   const tableHeader = (
@@ -40,10 +36,12 @@ function ProductList() {
     <tr key={product.id}>
       <td>{product.name}</td>
       <td>{product.quantity}</td>
-      <td>{product.price}</td>
+      <td>{product.price} €</td>
       <td>{product.details}</td>
       <td>
         <Link to={`/edit/${product.id}`}>Edit</Link>
+      </td>
+      <td>
         <button onClick={() => deleteProduct(product.id)}>Delete</button>
       </td>
     </tr>
