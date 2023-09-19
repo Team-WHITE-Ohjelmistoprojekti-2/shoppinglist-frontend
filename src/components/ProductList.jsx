@@ -49,13 +49,15 @@ function ProductList() {
 
   console.log(product);
   return (
+    <div>
     <table>
       {tableHeader}
       <tbody>{listItems}</tbody>
-      <button>
-        <Link to="/addproduct">Add Product</Link>
-      </button>
     </table>
+    <button>
+    <Link to="/addproduct">Add Product</Link>
+  </button>
+  </div>
   );
 }
 
