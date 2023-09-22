@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { PRODUCTS_URL, PRODUCT_URL } from "../constants";
 
+
 function ProductList() {
   const [product, setProduct] = useState([]);
 
@@ -28,6 +29,12 @@ function ProductList() {
         <th>Quantity</th>
         <th>Price</th>
         <th>Details</th>
+        <th>
+        <button className="addbutton">
+    <Link to="/addproduct">Add Product</Link>
+    </button>
+    </th>
+    <th></th>
       </tr>
     </thead>
   );
@@ -49,14 +56,11 @@ function ProductList() {
 
   console.log(product);
   return (
-    <div>
+    <div className="root-container">
     <table>
       {tableHeader}
       <tbody>{listItems}</tbody>
     </table>
-    <button>
-    <Link to="/addproduct">Add Product</Link>
-  </button>
   </div>
   );
 }

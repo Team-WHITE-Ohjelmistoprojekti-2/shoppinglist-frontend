@@ -5,12 +5,64 @@
   text-align: center;
 }
 
-th,
-td {
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  
+}
+
+thead th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+ 
+}
+
+th, td {
   border: 1px solid black;
   border-collapse: collapse;
   align-items: center;
-  width: 100px;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+div {
+ 
+  overflow-y:visible;
+  max-height: 500px;
+  align-items: center;
+  margin: 40px;
+ 
+}
+
+.addbutton {
+  background-color: gold;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.addbutton:hover {
+  background-color: goldenrod;
 }
 
 .logo {
@@ -19,9 +71,11 @@ td {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -47,4 +101,21 @@ td {
 
 .read-the-docs {
   color: #888;
+}
+
+
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+  th, td {
+    padding: 6px; 
+    width: auto; 
+  }
+  div {
+    max-height: none; 
+  }
+  .addbutton {
+    padding: 8px 16px; 
+  }
 }

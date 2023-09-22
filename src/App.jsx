@@ -1,8 +1,10 @@
 import "./App.css";
+import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import EditProduct from "./components/EditProduct";
 import AddProduct from "./components/AddProduct";
+
 
 function App() {
   return (
