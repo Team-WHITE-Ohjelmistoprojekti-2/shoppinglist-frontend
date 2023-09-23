@@ -39,51 +39,55 @@ function EditProduct() {
 
   console.log(product);
   return (
-    <div>
-      <h2>Editproduct</h2>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <label>Name</label>
-          <input
-            type={"text"}
-            placeholder="Product name"
-            name="name"
-            value={name}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label>Quantity</label>
-          <input
-            type={"text"}
-            placeholder="Quantity"
-            name="quantity"
-            value={quantity}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label>Price</label>
-          <input
-            type={"text"}
-            placeholder="Price"
-            name="price"
-            value={price}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <div>
-          <label>Details</label>
-          <input
-            type={"text"}
-            placeholder="Details"
-            name="details"
-            value={details}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+<div className="edit-form">
+    <h2>Edit Product</h2>
+    <form onSubmit={(e) => onSubmit(e)}>
+      <div className="form-group">
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Product name"
+          name="name"
+          value={name}
+          onChange={(e) => onInputChange(e)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="quantity">Quantity</label>
+        <input
+          type="text"
+          id="quantity"
+          placeholder="Quantity"
+          name="quantity"
+          value={quantity}
+          onChange={(e) => onInputChange(e)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="price">Price</label>
+        <input
+          type="text"
+          id="price"
+          placeholder="Price"
+          name="price"
+          value={price}
+          onChange={(e) => onInputChange(e)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="details">Details</label>
+        <input
+          type="text"
+          id="details"
+          placeholder="Details"
+          name="details"
+          value={details}
+          onChange={(e) => onInputChange(e)}
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
     </div>
   );
 }
