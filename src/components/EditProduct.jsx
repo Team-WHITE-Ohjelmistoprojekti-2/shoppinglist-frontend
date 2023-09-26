@@ -31,6 +31,9 @@ function EditProduct() {
       console.error("Error editing product:", error);
     }
   };
+  const handleCancel = () => {
+    navigate("/");
+  };
 
   const loadProducts = async () => {
     try {
@@ -91,6 +94,7 @@ function EditProduct() {
         />
       </div>
       <button type="submit">Submit</button>
+      <button type="button" onClick={handleCancel}>Cancel</button>
     </form>
     </div>
   );

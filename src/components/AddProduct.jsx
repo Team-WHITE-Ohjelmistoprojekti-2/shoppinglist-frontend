@@ -17,6 +17,9 @@ function AddProduct() {
   const onInputChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
+  const handleCancel = () => {
+    navigate("/");
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -77,6 +80,7 @@ function AddProduct() {
         />
       </div>
       <button type="submit">Add Product</button>
+      <button type="button" onClick={handleCancel}>Cancel</button>
     </form>
     </div>
   );
