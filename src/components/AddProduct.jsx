@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { PRODUCTS_URL } from "../constants";
+import { API_URL } from "../constants";
 
 function AddProduct() {
   let navigate = useNavigate();
@@ -20,7 +20,7 @@ function AddProduct() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post(PRODUCTS_URL , product);
+    await axios.post(`${API_URL}/products` , product);
     navigate("/");
   };
 

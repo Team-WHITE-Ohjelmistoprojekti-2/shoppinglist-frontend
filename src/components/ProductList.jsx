@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { PRODUCTS_URL, PRODUCT_URL } from "../constants";
+import { API_URL } from "../constants";
 
 
 function ProductList() {
@@ -14,11 +14,12 @@ function ProductList() {
   }, []);
 
   const loadProducts = async () => {
-    const result = await axios.get(PRODUCTS_URL);
+    // const result = await axios.get(PRODUCTS_URL);
+    const result = await axios.get(`${API_URL}/products`);
     setProduct(result.data);
   };
   const deleteProduct = async (id) => {
-    await axios.delete(`${PRODUCT_URL}/${id}`);
+    await axios.delete(`${API_URL}/product/${id}`);
     loadProducts();
   };
 

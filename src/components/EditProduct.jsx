@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { PRODUCTS_URL } from "../constants";
+import { API_URL } from "../constants";
 
 function EditProduct() {
   let navigate = useNavigate();
@@ -24,13 +24,13 @@ function EditProduct() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`${PRODUCTS_URL}/${id}`, product);
+    await axios.put(`${API_URL}/products/${id}`, product);
     navigate("/");
   };
 
   const loadProducts = async () => {
     try {
-      const result = await axios.get(`${PRODUCTS_URL}/${id}`);
+      const result = await axios.get(`${API_URL}/products/${id}`);
       setProduct(result.data);
     } catch (error) {
       console.error("Error loading product:", error);
