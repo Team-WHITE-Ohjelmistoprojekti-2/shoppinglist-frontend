@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 import { API_URL } from "../constants";
 
 
@@ -14,13 +15,33 @@ function ProductList() {
   }, []);
 
   const loadProducts = async () => {
-    // const result = await axios.get(PRODUCTS_URL);
-    const result = await axios.get(`${API_URL}/products`);
-    setProduct(result.data);
+    try {
+      const result = await axios.get(`${API_URL}/products`);
+      setProduct(result.data);
+    } catch (error) {
+      console.error("Error loading products:", error);
+    }
   };
+
   const deleteProduct = async (id) => {
-    await axios.delete(`${API_URL}/product/${id}`);
-    loadProducts();
+    try {
+      const confirmResult = await Swal.fire({
+        title: 'Are you sure you want to delete this product?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      });
+
+      if (confirmResult.isConfirmed) {
+        await axios.delete(`${API_URL}/product/${id}`);
+        loadProducts();
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   const tableHeader = (

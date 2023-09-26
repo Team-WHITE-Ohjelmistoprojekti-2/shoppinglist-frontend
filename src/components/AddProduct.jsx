@@ -20,8 +20,12 @@ function AddProduct() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post(`${API_URL}/products` , product);
-    navigate("/");
+    try {
+      await axios.post(`${API_URL}/products`, product);
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
   return (

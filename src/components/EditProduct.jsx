@@ -24,8 +24,12 @@ function EditProduct() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`${API_URL}/products/${id}`, product);
-    navigate("/");
+    try {
+      await axios.put(`${API_URL}/products/${id}`, product);
+      navigate("/");
+    } catch (error) {
+      console.error("Error editing product:", error);
+    }
   };
 
   const loadProducts = async () => {
