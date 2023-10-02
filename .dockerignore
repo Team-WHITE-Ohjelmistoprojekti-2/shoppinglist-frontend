@@ -1,0 +1,15 @@
+# Exclude development files and directories
+node_modules
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# Exclude build artifacts
+/dist
+/build
+
+# Exclude version control directories and files
+.git
+.gitignore
+
+# Exclude any other files or directories not needed in the Docker image
