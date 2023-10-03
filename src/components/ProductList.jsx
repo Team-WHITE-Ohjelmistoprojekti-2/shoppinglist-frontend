@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { API_URL } from "../constants";
-
 
 function ProductList() {
   const [product, setProduct] = useState([]);
-
- 
-
+  
   useEffect(() => {
     loadProducts();
   }, []);
@@ -26,13 +23,13 @@ function ProductList() {
   const deleteProduct = async (id) => {
     try {
       const confirmResult = await Swal.fire({
-        title: 'Are you sure you want to delete this product?',
+        title: "Are you sure you want to delete this product?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       });
 
       if (confirmResult.isConfirmed) {
@@ -52,11 +49,11 @@ function ProductList() {
         <th>Price</th>
         <th>Details</th>
         <th>
-        <button className="addbutton">
-    <Link to="/addproduct">Add Product</Link>
-    </button>
-    </th>
-    <th></th>
+          <button className="addbutton">
+            <Link to="/addproduct">Add Product</Link>
+          </button>
+        </th>
+        <th></th>
       </tr>
     </thead>
   );
@@ -79,11 +76,11 @@ function ProductList() {
   console.log(product);
   return (
     <div className="root-container">
-    <table>
-      {tableHeader}
-      <tbody>{listItems}</tbody>
-    </table>
-  </div>
+      <table>
+        {tableHeader}
+        <tbody>{listItems}</tbody>
+      </table>
+    </div>
   );
 }
 

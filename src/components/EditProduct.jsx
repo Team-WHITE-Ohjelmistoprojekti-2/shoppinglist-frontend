@@ -20,7 +20,7 @@ function EditProduct() {
 
   useEffect(() => {
     loadProducts();
-  },[]); //ASK [] ?
+  },[]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
