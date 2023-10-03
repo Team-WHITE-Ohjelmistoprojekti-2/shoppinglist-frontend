@@ -10,9 +10,6 @@ RUN npm install
 # Copy local directories to the current local directory of our docker image (/app)
 COPY . .
 
-# Set the appropriate permissions (755 means read, write, and execute)
-RUN chmod -R 755 /app
-
 # Install the "serve" package globally
 RUN npm install -g serve
 
