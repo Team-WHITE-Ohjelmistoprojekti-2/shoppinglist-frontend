@@ -1,0 +1,20 @@
+# Multi-stage Dockerfile.
+# Uses nginx as web server to serve files.
+#
+# There is no node runtime in the container
+# so the image built from this uses much less disk space.
+
+# build stage
+FROM node:alpine AS build
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+# publish stage
+FROM nginx:alpine AS publish
+WORKDIR /usr/share/nginx/html
+EXPOSE 80
+RUN rm -rf ./*
+COPY --from=build /app/dist .
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
