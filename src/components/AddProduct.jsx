@@ -8,7 +8,7 @@ function AddProduct() {
 
   const [product, setProduct] = useState({
     name: "",
-    quantity: "",
+    quantity: 1,
     price: "",
     details: "",
   });

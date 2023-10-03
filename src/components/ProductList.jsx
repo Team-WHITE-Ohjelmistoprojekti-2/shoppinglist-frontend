@@ -64,8 +64,8 @@ function ProductList() {
   const listItems = product.map((product) => (
     <tr key={product.id}>
       <td>{product.name}</td>
-      <td>{product.quantity}</td>
-      <td>{product.price} €</td>
+      <td>{product.quantity == 0 ? "1" : product.quantity}</td>
+      <td>{product.price == null ? "" : product.price + "€"}</td>
       <td>{product.details}</td>
       <td>
         <Link to={`/edit/${product.id}`}>Edit</Link>
