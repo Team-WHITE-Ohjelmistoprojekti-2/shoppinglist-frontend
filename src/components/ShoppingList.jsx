@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { API_URL } from "../constants";
 
-function ProductList() {
+function ShoppingList() {
+  const { id } = useParams();
   const [product, setProduct] = useState([]);
-
+  
   useEffect(() => {
-    loadProducts();
-  }, []);
+    loadShoppinglist(id);
+  }, [id]);
 
-  const loadProducts = async () => {
+  const loadShoppinglist = async (id) => {
     try {
-      const result = await axios.get(`${API_URL}/products`);
+      const result = await axios.get(`${API_URL}/products?shoppinglist=${id}`);
       setProduct(result.data);
     } catch (error) {
       console.error("Error loading products:", error);
@@ -34,7 +35,7 @@ function ProductList() {
 
       if (confirmResult.isConfirmed) {
         await axios.delete(`${API_URL}/product/${id}`);
-        loadProducts();
+        loadShoppinglist();
       }
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -84,4 +85,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default ShoppingList;

@@ -23,7 +23,7 @@ function ViewShoppinglists() {
     <div key={shoppinglist.id} className="shoppinglist-item">
       <h1>{shoppinglist.name}</h1>
       <p>{shoppinglist.details}</p>
-      <Link to={`/shoppinglist/${shoppinglist.id}`}>View Shoppinglist</Link>
+        <Link to={`/shoppinglist/${shoppinglist.id}`}>View Shoppinglist</Link>
     </div>
   ));
 
