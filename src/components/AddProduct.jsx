@@ -1,9 +1,8 @@
-import { } from '@radix-ui/react-collection'; // Radix-UI items here
+import {} from "@radix-ui/react-collection"; // Radix-UI items here
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../constants";
-//import {shoppinglistid} from "../ViewShoppinglists"
 
 function AddProduct() {
   let navigate = useNavigate();
@@ -22,17 +21,14 @@ function AddProduct() {
   };
 
   const handleCancel = () => {
-    navigate(`/shoppinglist/${id}`);
+    navigate("/");
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        `${API_URL}/products?=${id}`,
-        product
-      );
-      navigate(`/shoppinglists`);
+      await axios.post(`${API_URL}/products?=${id}`, product);
+      navigate(`/`);
     } catch (error) {
       console.error("Error adding product:", error);
     }

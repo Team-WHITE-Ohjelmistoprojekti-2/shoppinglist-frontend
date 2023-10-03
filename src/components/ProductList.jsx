@@ -76,6 +76,9 @@ function ProductList() {
   console.log(product);
   return (
     <div className="root-container">
+      <button>
+        <Link to={`/shoppinglists/`}>View shoppinglists</Link>
+      </button>
       <table>
         {tableHeader}
         <tbody>{listItems}</tbody>

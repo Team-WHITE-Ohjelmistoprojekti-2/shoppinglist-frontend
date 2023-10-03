@@ -1,4 +1,4 @@
-import { } from '@radix-ui/react-portal'; // Radix-UI items here
+import {} from "@radix-ui/react-portal"; // Radix-UI items here
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -24,12 +24,15 @@ function ViewShoppinglists() {
     <div key={shoppinglist.id} className="shoppinglist-item">
       <h1>{shoppinglist.name}</h1>
       <p>{shoppinglist.details}</p>
-        <Link to={`/shoppinglist/${shoppinglist.id}`}>View Shoppinglist</Link>
+      <Link to={`/shoppinglist/${shoppinglist.id}`}>View Shoppinglist</Link>
     </div>
   ));
 
   return (
     <div className="view-shoppinglists">
+      <button>
+        <Link to={`/`}>View productlist</Link>
+      </button>
       <h1>All Shoppinglists</h1>
       <div className="shoppinglist-container">{shoppinglistItems}</div>
     </div>
