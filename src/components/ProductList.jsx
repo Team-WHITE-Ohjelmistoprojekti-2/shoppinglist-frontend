@@ -3,13 +3,26 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { API_URL } from "../constants";
+import PropTypes from "prop-types"
+//radix example
+
 
 function ProductList() {
   const [product, setProduct] = useState([]);
+  
 
   useEffect(() => {
     loadProducts();
   }, []);
+
+  //dropdown menu radix example
+    const DropdownMenuDemo = () => {
+    const [bookmarksChecked, setBookmarksChecked] = React.useState(true);
+    const [urlsChecked, setUrlsChecked] = React.useState(false);
+    const [person, setPerson] = React.useState('pedro');
+    };
+
+    
 
   const loadProducts = async () => {
     try {
@@ -20,6 +33,7 @@ function ProductList() {
     }
   };
 
+  
   const deleteProduct = async (id) => {
     try {
       const confirmResult = await Swal.fire({
@@ -75,15 +89,21 @@ function ProductList() {
 
   console.log(product);
   return (
+    
+    
     <div className="root-container">
       <button>
         <Link to={`/shoppinglists/`}>View shoppinglists</Link>
       </button>
+      
       <table>
         {tableHeader}
         <tbody>{listItems}</tbody>
       </table>
+      
     </div>
+    
+    
   );
 }
 

@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
+import PropTypes from 'prop-types';
+import RangeInput from './RangeInput'; // Import the RangeInput component
+import './RangeInput.css'; // Import the CSS file for RangeInput
 
 function ViewShoppinglists() {
   const [shoppinglists, setShoppinglists] = useState([]);
@@ -30,6 +33,7 @@ function ViewShoppinglists() {
 
   return (
     <div className="view-shoppinglists">
+      <RangeInput></RangeInput>
       <button>
         <Link to={`/`}>View productlist</Link>
       </button>
