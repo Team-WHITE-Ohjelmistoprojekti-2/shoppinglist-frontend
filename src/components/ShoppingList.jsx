@@ -5,23 +5,23 @@ import Swal from "sweetalert2";
 import { API_URL } from "../constants";
 
 function ShoppingList() {
-  const { id } = useParams();
+  const { id: shoppinglistId } = useParams();
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    loadShoppinglist(id);
-  }, [id]);
+    loadShoppinglist(shoppinglistId);
+  }, [shoppinglistId]);
 
-  const loadShoppinglist = async (id) => {
+  const loadShoppinglist = async (shoppinglistId) => {
     try {
-      const result = await axios.get(`${API_URL}/products?shoppinglist=${id}`);
+      const result = await axios.get(`${API_URL}/products?shoppinglist=${shoppinglistId}`);
       setProduct(result.data);
     } catch (error) {
       console.error("Error loading products:", error);
     }
   };
 
-  const deleteProduct = async (id) => {
+  const deleteProduct = async (productId) => {
     try {
       const confirmResult = await Swal.fire({
         title: "Are you sure you want to delete this product?",
@@ -34,8 +34,8 @@ function ShoppingList() {
       });
 
       if (confirmResult.isConfirmed) {
-        await axios.delete(`${API_URL}/product/${id}`);
-        loadShoppinglist(id);
+        await axios.delete(`${API_URL}/product/${productId}`);
+        loadShoppinglist(shoppinglistId);
       }
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -51,7 +51,7 @@ function ShoppingList() {
         <th>Details</th>
         <th>
           <button className="addbutton">
-            <Link to={`/addproduct/${id}`}>Add Product</Link>
+            <Link to={`/addproduct/${shoppinglistId}`}>Add Product</Link>
           </button>
         </th>
         <th></th>
@@ -81,6 +81,9 @@ function ShoppingList() {
         {tableHeader}
         <tbody>{listItems}</tbody>
       </table>
+      <button>
+        <Link to={`/`}>View shoppinglists</Link>
+      </button>
     </div>
   );
 }
