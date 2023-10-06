@@ -51,7 +51,7 @@ function ShoppingList() {
         <th>Details</th>
         <th>
           <button className="addbutton">
-            <Link to="/addproduct">Add Product</Link>
+            <Link to={`/addproduct/${id}`}>Add Product</Link>
           </button>
         </th>
         <th></th>

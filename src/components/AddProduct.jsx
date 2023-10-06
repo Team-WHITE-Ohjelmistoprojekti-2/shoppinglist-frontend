@@ -1,4 +1,3 @@
-import {} from "@radix-ui/react-collection"; // Radix-UI items here
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,22 +12,23 @@ function AddProduct() {
     quantity: 1,
     price: "",
     details: "",
+    shoppinglistId: id,
   });
-  const { name, quantity, price, details } = product;
 
   const onInputChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
   const handleCancel = () => {
-    navigate("/");
+    navigate(`/shoppinglist/${id}`);
   };
 
   const onSubmit = async (e) => {
+    console.log(product);
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/products?=${id}`, product);
-      navigate(`/`);
+      await axios.post(`${API_URL}/products`, product);
+      navigate(`/shoppinglist/${id}`);
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -45,8 +45,9 @@ function AddProduct() {
             id="name"
             placeholder="Product name"
             name="name"
-            value={name}
+            value={product.name}
             onChange={(e) => onInputChange(e)}
+            required
           />
         </div>
         <div className="form-group">
@@ -56,8 +57,9 @@ function AddProduct() {
             id="quantity"
             placeholder="Quantity"
             name="quantity"
-            value={quantity}
+            value={product.quantity}
             onChange={(e) => onInputChange(e)}
+            required
           />
         </div>
         <div className="form-group">
@@ -67,7 +69,7 @@ function AddProduct() {
             id="price"
             placeholder="Price"
             name="price"
-            value={price}
+            value={product.price}
             onChange={(e) => onInputChange(e)}
           />
         </div>
@@ -78,7 +80,7 @@ function AddProduct() {
             id="details"
             placeholder="Details"
             name="details"
-            value={details}
+            value={product.details}
             onChange={(e) => onInputChange(e)}
           />
         </div>
