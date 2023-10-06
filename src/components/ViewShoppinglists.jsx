@@ -35,7 +35,7 @@ function ViewShoppinglists() {
     <div className="view-shoppinglists">
       <RangeInput></RangeInput>
       <button>
-        <Link to={`/`}>View productlist</Link>
+        <Link to={`/productlist`}>View productlist</Link>
       </button>
       <h1>All Shoppinglists</h1>
       <div className="shoppinglist-container">{shoppinglistItems}</div>

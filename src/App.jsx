@@ -12,10 +12,10 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={<ProductList />} />
+          <Route exact path="/productlist" element={<ProductList />} />
           <Route exact path="/edit/:id" element={<EditProduct />} />
           <Route exact path="/addproduct/:id" element={<AddProduct />} />
-          <Route exact path="/shoppinglists" element={<ViewShoppinglists />} />
+          <Route exact path="/" element={<ViewShoppinglists />} />
           <Route exact path="/shoppinglist/:id" element={<ShoppingList />} />
         </Routes>
       </Router>

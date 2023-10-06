@@ -7,7 +7,7 @@ import { API_URL } from "../constants";
 function ShoppingList() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
-  
+
   useEffect(() => {
     loadShoppinglist(id);
   }, [id]);
@@ -35,7 +35,7 @@ function ShoppingList() {
 
       if (confirmResult.isConfirmed) {
         await axios.delete(`${API_URL}/product/${id}`);
-        loadShoppinglist();
+        loadShoppinglist(id);
       }
     } catch (error) {
       console.error("Error deleting product:", error);
