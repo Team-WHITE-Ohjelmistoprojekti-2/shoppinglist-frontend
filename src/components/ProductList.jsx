@@ -58,9 +58,10 @@ function ProductList() {
         <th>Price</th>
         <th>Details</th>
         <th>
+    {/*
           <button className="addbutton">
             <Link to="/addproduct">Add Product</Link>
-          </button>
+          </button>*/}
         </th>
         <th></th>
       </tr>
