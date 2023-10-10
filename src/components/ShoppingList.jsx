@@ -66,7 +66,7 @@ function ShoppingList() {
       <td>{product.price == null ? "" : product.price + "€"}</td>
       <td>{product.details}</td>
       <td>
-        <Link to={`/edit/${product.id}`}>Edit</Link>
+        <Link to={`/edit/${product.id}?shoppinglistId=${shoppinglistId}`}>Edit</Link>
       </td>
       <td>
         <button onClick={() => deleteProduct(product.id)}>Delete</button>

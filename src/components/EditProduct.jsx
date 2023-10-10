@@ -5,7 +5,7 @@ import { API_URL } from "../constants";
 
 function EditProduct() {
   let navigate = useNavigate();
-  const { id } = useParams();
+  const { id} = useParams();
   const [product, setProduct] = useState({
     name: "",
     quantity: "",
@@ -27,13 +27,13 @@ function EditProduct() {
     e.preventDefault();
     try {
       await axios.put(`${API_URL}/products/${id}`, product);
-      navigate(`/`);
+      navigate(`/shoppinglist/${product.shoppinglistId}`);
     } catch (error) {
       console.error("Error editing product:", error);
     }
   };
   const handleCancel = () => {
-    navigate(`/`);
+    navigate(`/shoppinglist/${product.shoppinglistId}`);
   };
 
   const loadProducts = async () => {
