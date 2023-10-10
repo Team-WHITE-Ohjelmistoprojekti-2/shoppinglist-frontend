@@ -86,8 +86,8 @@ input {
   font-size: 16px;
 }
 
-.addbutton {
-  background-color: gold;
+.deletebutton {
+  background-color: rgb(213, 39, 39);
   color: black;
   border: none;
   padding: 10px 20px;
@@ -97,8 +97,23 @@ input {
   border-radius: 4px;
 }
 
-.addbutton:hover {
-  background-color: goldenrod;
+.deletebutton:hover {
+  background-color: rgb(142, 12, 12);
+}
+
+.button {
+  background-color: rgb(64, 183, 205);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: rgb(125, 211, 215);
 }
 
 .logo {

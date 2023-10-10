@@ -14,7 +14,9 @@ function ShoppingList() {
 
   const loadShoppinglist = async (shoppinglistId) => {
     try {
-      const result = await axios.get(`${API_URL}/products?shoppinglist=${shoppinglistId}`);
+      const result = await axios.get(
+        `${API_URL}/products?shoppinglist=${shoppinglistId}`
+      );
       setProduct(result.data);
     } catch (error) {
       console.error("Error loading products:", error);
@@ -50,9 +52,9 @@ function ShoppingList() {
         <th>Price</th>
         <th>Details</th>
         <th>
-          <button className="addbutton">
-            <Link to={`/addproduct/${shoppinglistId}`}>Add Product</Link>
-          </button>
+          <Link className="button" to={`/addproduct/${shoppinglistId}`}>
+            Add Product
+          </Link>
         </th>
         <th></th>
       </tr>
@@ -66,10 +68,12 @@ function ShoppingList() {
       <td>{product.price == null ? "" : product.price + "€"}</td>
       <td>{product.details}</td>
       <td>
-        <Link to={`/edit/${product.id}?shoppinglistId=${shoppinglistId}`}>Edit</Link>
-      </td>
+        <Link className="button" to={`/edit/${product.id}`}>
+          Edit
+        </Link>
+      </td> 
       <td>
-        <button onClick={() => deleteProduct(product.id)}>Delete</button>
+        <button className="deletebutton" onClick={() => deleteProduct(product.id)}>Delete</button>
       </td>
     </tr>
   ));
@@ -81,9 +85,9 @@ function ShoppingList() {
         {tableHeader}
         <tbody>{listItems}</tbody>
       </table>
-      <button>
-        <Link to={`/`}>View shoppinglists</Link>
-      </button>
+      <Link className="button" to={`/`}>
+        View shoppinglists
+      </Link>
     </div>
   );
 }
