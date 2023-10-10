@@ -9,7 +9,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  
 }
 
 thead th {
@@ -17,10 +16,10 @@ thead th {
   position: sticky;
   top: 0;
   z-index: 1;
- 
 }
 
-th, td {
+th,
+td {
   border: 1px solid black;
   border-collapse: collapse;
   align-items: center;
@@ -29,9 +28,7 @@ th, td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }
-
 
 tbody tr:nth-child(even) {
   background-color: #f2f2f2;
@@ -42,12 +39,10 @@ tbody tr:hover {
 }
 
 .root-container {
- 
-  overflow-y:visible;
+  overflow-y: visible;
   max-height: 500px;
   align-items: center;
   margin: 40px;
- 
 }
 .add-form {
   max-width: 400px;
@@ -86,21 +81,6 @@ input {
   font-size: 16px;
 }
 
-.deletebutton {
-  background-color: rgb(213, 39, 39);
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.deletebutton:hover {
-  background-color: rgb(142, 12, 12);
-}
-
 .button {
   background-color: rgb(64, 183, 205);
   color: black;
@@ -114,6 +94,21 @@ input {
 
 .button:hover {
   background-color: rgb(125, 211, 215);
+}
+
+.deletebutton {
+  background-color: rgb(213, 39, 39);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.deletebutton:hover {
+  background-color: rgb(142, 12, 12);
 }
 
 .logo {
@@ -154,19 +149,19 @@ input {
   color: #888;
 }
 
-
 @media (max-width: 768px) {
   table {
     font-size: 14px;
   }
-  th, td {
-    padding: 6px; 
-    width: auto; 
+  th,
+  td {
+    padding: 6px;
+    width: auto;
   }
   div {
-    max-height: none; 
+    max-height: none;
   }
   .addbutton {
-    padding: 8px 16px; 
+    padding: 8px 16px;
   }
 }
