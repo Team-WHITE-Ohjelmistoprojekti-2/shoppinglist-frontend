@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { API_URL } from "../constants";
 import PropTypes from "prop-types";
+//radix styles import
+import '@radix-ui/themes/styles.css';
 //radix example
+import { Theme, Button } from '@radix-ui/themes';
+
 
 function ProductList() {
   const [product, setProduct] = useState([]);
@@ -78,13 +82,14 @@ function ProductList() {
         <Link to={`/edit/${product.id}`}>Edit</Link>
       </td>
       <td>
-        <button onClick={() => deleteProduct(product.id)}>Delete</button>
+        <Button color="crimson" variant="classic" onClick={() => deleteProduct(product.id)}>Delete</Button>
       </td>
     </tr>
   ));
 
   console.log(product);
   return (
+    <Theme grayColor="sand" radius="large" scaling="95%">
     <div className="root-container">
         <Link className="button" to={`/`}>View shoppinglists</Link>
       <table>
@@ -92,6 +97,7 @@ function ProductList() {
         <tbody>{listItems}</tbody>
       </table>
     </div>
+    </Theme>
   );
 }
 

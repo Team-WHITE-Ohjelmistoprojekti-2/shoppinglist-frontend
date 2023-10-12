@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import RangeInput from "./RangeInput"; // Import the RangeInput component
 import "./RangeInput.css"; // Import the CSS file for RangeInput
 import { formatDateTime } from "./DateHandler";
+import { Theme} from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 
 
 function ViewShoppinglists() {
@@ -37,6 +39,8 @@ function ViewShoppinglists() {
   ));
 
   return (
+    //Inside here you can put some cool stuffs later on 
+    <Theme>
     <div className="view-shoppinglists">
       <RangeInput></RangeInput>
       <Link className="button" to={`/productlist`}>View productlist</Link>
@@ -44,6 +48,7 @@ function ViewShoppinglists() {
       <Link className="button" to={`/addshoppinglist`}>Add a new Shoppinglist</Link>
       <div className="shoppinglist-container">{shoppinglistItems}</div>
     </div>
+    </Theme>
   );
 }
 
