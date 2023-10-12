@@ -6,6 +6,8 @@ import { API_URL } from "../constants";
 import PropTypes from "prop-types";
 import RangeInput from "./RangeInput"; // Import the RangeInput component
 import "./RangeInput.css"; // Import the CSS file for RangeInput
+import { formatDateTime } from "./DateHandler";
+
 
 function ViewShoppinglists() {
   const [shoppinglists, setShoppinglists] = useState([]);
@@ -27,6 +29,9 @@ function ViewShoppinglists() {
     <div key={shoppinglist.id} className="shoppinglist-item">
       <h1>{shoppinglist.name}</h1>
       <p>{shoppinglist.details}</p>
+      <p>Created: {formatDateTime(shoppinglist.createdAt)}</p> 
+     {/* <p>Updated: {formatDateTime(shoppinglist.updatedAt)}</p>   */}
+
       <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>View Shoppinglist</Link>
     </div>
   ));
@@ -36,6 +41,7 @@ function ViewShoppinglists() {
       <RangeInput></RangeInput>
       <Link className="button" to={`/productlist`}>View productlist</Link>
       <h1>All Shoppinglists</h1>
+      <Link className="button" to={`/addshoppinglist`}>Add a new Shoppinglist</Link>
       <div className="shoppinglist-container">{shoppinglistItems}</div>
     </div>
   );
