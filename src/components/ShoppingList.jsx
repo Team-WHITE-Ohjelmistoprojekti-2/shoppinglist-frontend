@@ -5,8 +5,9 @@ import Swal from "sweetalert2";
 import { API_URL } from "../constants";
 
 function ShoppingList() {
-  const { id: shoppinglistId } = useParams();
+  const { id: shoppinglistId} = useParams();
   const [product, setProduct] = useState([]);
+  const [shoppinglistName, setShoppinglistName] = useState(""); 
 
   useEffect(() => {
     loadShoppinglist(shoppinglistId);
@@ -17,7 +18,11 @@ function ShoppingList() {
       const result = await axios.get(
         `${API_URL}/products?shoppinglist=${shoppinglistId}`
       );
+      const resultname = await axios.get(
+        `${API_URL}/shoppinglists/${shoppinglistId}`
+      );
       setProduct(result.data);
+      setShoppinglistName(resultname.data.name)
     } catch (error) {
       console.error("Error loading products:", error);
     }
@@ -81,6 +86,7 @@ function ShoppingList() {
   console.log(product);
   return (
     <div className="root-container">
+       <h1>{shoppinglistName}</h1>
       <table>
         {tableHeader}
         <tbody>{listItems}</tbody>
