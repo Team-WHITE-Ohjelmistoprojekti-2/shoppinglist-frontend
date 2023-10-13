@@ -6,10 +6,13 @@ import { API_URL } from "../constants";
 import PropTypes from "prop-types";
 import RangeInput from "./RangeInput"; // Import the RangeInput component
 import "./RangeInput.css"; // Import the CSS file for RangeInput
-import { formatDateTime } from "./DateHandler";
 import { Theme} from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
+import dayjs from 'dayjs';
+import 'dayjs/locale/fi';
+import utc from 'dayjs/plugin/utc';
 
+dayjs.extend(utc);
 
 function ViewShoppinglists() {
   const [shoppinglists, setShoppinglists] = useState([]);
@@ -26,12 +29,14 @@ function ViewShoppinglists() {
       console.error("Error loading shoppinglists:", error);
     }
   };
+  
 
   const shoppinglistItems = shoppinglists.map((shoppinglist) => (
     <div key={shoppinglist.id} className="shoppinglist-item">
       <h1>{shoppinglist.name}</h1>
       <p>{shoppinglist.details}</p>
-      <p>Created: {formatDateTime(shoppinglist.createdAt)}</p> 
+      <p>Created: {dayjs.utc(shoppinglist.createdAt).locale('fi').utcOffset(3).format('YYYY-MM-DD HH:mm')}</p>
+
      {/* <p>Updated: {formatDateTime(shoppinglist.updatedAt)}</p>   */}
 
       <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>View Shoppinglist</Link>
