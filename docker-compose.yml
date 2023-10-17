@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  shoppinglist:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - 5173:80
