@@ -34,7 +34,7 @@ function ViewShoppinglists() {
   const deleteShoppinglist = async (shoppinglistId) => {
     try {
       const confirmResult = await Swal.fire({
-        title: "Are you sure you want to delete this product?",
+        title: "Are you sure you want to delete this?",
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
@@ -44,6 +44,12 @@ function ViewShoppinglists() {
       });
 
       if (confirmResult.isConfirmed) {
+        Swal.fire({
+          title:"Deleted!",
+          text: "Shoppinglist has been deleted",
+          icon: "success",
+
+        })
         await axios.delete(`${API_URL}/shoppinglists/${shoppinglistId}`);
         loadShoppinglists(shoppinglistId);
       }
