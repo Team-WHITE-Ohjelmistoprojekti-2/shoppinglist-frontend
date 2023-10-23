@@ -4,8 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
 import PropTypes from "prop-types";
-import RangeInput from "./RangeInput"; // Import the RangeInput component
-import "./RangeInput.css"; // Import the CSS file for RangeInput
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
@@ -17,6 +15,7 @@ dayjs.extend(utc);
 
 function ViewShoppinglists() {
   const [shoppinglists, setShoppinglists] = useState([]);
+
 
   useEffect(() => {
     loadShoppinglists();
@@ -30,6 +29,7 @@ function ViewShoppinglists() {
       console.error("Error loading shoppinglists:", error);
     }
   };
+  
 
   const deleteShoppinglist = async (shoppinglistId) => {
     try {
@@ -70,6 +70,7 @@ function ViewShoppinglists() {
           .utcOffset(3)
           .format("YYYY-MM-DD HH:mm")}
       </p>
+      
 
       {/* <p>Updated: {formatDateTime(shoppinglist.updatedAt)}</p>   */}
 
@@ -89,7 +90,7 @@ function ViewShoppinglists() {
     //Inside here you can put some cool stuffs later on
     <Theme>
       <div className="view-shoppinglists">
-        <RangeInput></RangeInput>
+
         <Link className="button" to={`/productlist`}>
           View productlist
         </Link>
