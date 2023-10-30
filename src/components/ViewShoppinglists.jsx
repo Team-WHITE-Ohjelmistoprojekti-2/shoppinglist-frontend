@@ -67,8 +67,8 @@ function ViewShoppinglists() {
         {dayjs
           .utc(shoppinglist.createdAt)
           .locale("fi")
-          .utcOffset(3)
-          .format("YYYY-MM-DD HH:mm")}
+          .utcOffset(2)
+          .format("DD.MM.YYYY  HH:mm")}
       </p>
       
 

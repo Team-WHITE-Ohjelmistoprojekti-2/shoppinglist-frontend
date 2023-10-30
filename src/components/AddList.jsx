@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
 import { API_URL } from "../constants";
-import { getCurrentTime } from "./DateHandler";
+
 
 function AddList() {
   let navigate = useNavigate();
@@ -10,8 +10,8 @@ function AddList() {
 
   const [list, setList] = useState({
     name: "",
-    createdAt: getCurrentTime(),
-    updatedAt: getCurrentTime(),
+    createdAt: "",
+    updatedAt: "",
   });
 
   const onInputChange = (e) => {
