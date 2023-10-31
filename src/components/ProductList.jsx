@@ -17,10 +17,34 @@ function ProductList() {
     loadProducts();
   }, []);
 
+  const fetchShoppinglistName = async (shoppinglistId) => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/shoppinglists/${shoppinglistId}`
+      );
+      return response.data.name;
+    } catch (error) {
+      console.error("Error fetching shopping list name:", error);
+      return " ";
+    }
+  };
+
   const loadProducts = async () => {
     try {
-      const result = await axios.get(`${API_URL}/products`);
-      setProduct(result.data);
+      const productsResponse = await axios.get(`${API_URL}/products`);
+      const products = productsResponse.data;
+
+      // Fetch shopping list names for each product
+      const productsWithShoppinglistName = await Promise.all(
+        products.map(async (product) => {
+          const shoppinglistName = await fetchShoppinglistName(
+            product.shoppinglistId
+          );
+          return { ...product, shoppinglistName };
+        })
+      );
+
+      setProduct(productsWithShoppinglistName);
     } catch (error) {
       console.error("Error loading products:", error);
     }
@@ -78,7 +102,9 @@ function ProductList() {
         <th>Quantity</th>
         <th>Price</th>
         <th>Details</th>
-        <th></th>
+        <th>Shoppinglist name</th>
+        {/*         <th></th>
+         */}{" "}
         <th></th>
       </tr>
     </thead>
@@ -99,17 +125,22 @@ function ProductList() {
         <div>{product.details}</div>
       </td>
       <td style={{ backgroundColor }}>
-        <Link to={`/edit/${product.id}`}>Edit</Link>
+        <div>{product.shoppinglistName}</div>
       </td>
+      {/*  <td style={{ backgroundColor }}>
+        <Link to={`/edit/${product.id}`}>Edit</Link>
+      </td> */}
       <td style={{ backgroundColor }}>
-{/*         <Button
+        {/*         <Button
           color="crimson"
           variant="classic"
           onClick={() => deleteProduct(product.id)}
         >
           Delete
         </Button> */}
-        <Link className="button" onClick={() => deleteProduct(product.id)}>Delete</Link>
+        <Link className="button" onClick={() => deleteProduct(product.id)}>
+          Delete
+        </Link>
       </td>
     </tr>
   ));
