@@ -7,7 +7,9 @@ import PropTypes from "prop-types";
 import "@radix-ui/themes/styles.css";
 import RangeInput from "./RangeInput";
 import "./RangeInput.css";
-import { Theme, Button } from "@radix-ui/themes";
+import { Theme, Button,  } from "@radix-ui/themes";
+import RadixUITable from "./RadixUITable";
+
 
 function ProductList() {
   const [product, setProduct] = useState([]);
@@ -146,6 +148,8 @@ function ProductList() {
   ));
 
   return (
+    
+
     <Theme grayColor="sand" radius="large" scaling="95%">
       <div className="slider-container">
         <p>Table color slider beta 0.1</p>
@@ -162,6 +166,7 @@ function ProductList() {
           {tableHeader}
           <tbody>{listItems}</tbody>
         </table>
+        
       </div>
     </Theme>
   );
