@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { API_URL } from "../constants";
-import PropTypes from "prop-types";
 import "@radix-ui/themes/styles.css";
 import RangeInput from "./RangeInput";
 import "./RangeInput.css";
-import { Theme, Button,  } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import RadixUITable from "./RadixUITable";
 
 
@@ -148,10 +147,9 @@ function ProductList() {
   ));
 
   return (
-    
-
     <Theme grayColor="sand" radius="large" scaling="95%">
       <div className="slider-container">
+        <RadixUITable />
         <p>Table color slider beta 0.1</p>
         <RangeInput
           onValueChange={handleSliderChange}
