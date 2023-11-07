@@ -7,6 +7,7 @@ import AddProduct from "./components/AddProduct";
 import ViewShoppinglists from "./components/ViewShoppinglists";
 import ShoppingList from "./components/ShoppingList";
 import AddList from "./components/AddList";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/" element={<ViewShoppinglists />} />
           <Route exact path="/shoppinglist/:id" element={<ShoppingList />} />
           <Route exact path="/addshoppinglist/" element={<AddList />} />
+          <Route exact path="/signup" element={<SignUp />} />
         </Routes>
       </Router>
     </div>
