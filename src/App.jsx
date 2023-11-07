@@ -13,6 +13,7 @@ import ViewShoppinglists from "./components/ViewShoppinglists";
 import ShoppingList from "./components/ShoppingList";
 import AddList from "./components/AddList";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 const queryClient = new QueryClient()
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/shoppinglist/:id" element={<ShoppingList />} />
           <Route exact path="/addshoppinglist/" element={<AddList />} />
           <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
