@@ -1,9 +1,16 @@
 import axios from "axios";
 import { API_URL } from "../constants";
 
+//Shopping list Crud
 export const getShoppinglists = async () => {
-    const result = await axios.get(`${API_URL}/shoppinglists`);
+    try{
+        const result = await axios.get(`${API_URL}/shoppinglists`);
     return result.data;
+    } catch (error) {
+        // Handle error if needed
+        console.error('Error fetching shoppinglists:', error);
+        throw error; // Re-throw the error to handle it elsewhere, if necessary
+      }
 }
 
 export async function deleteShoppinglist(shoppinglistId) {
