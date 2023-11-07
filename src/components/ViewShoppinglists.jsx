@@ -1,8 +1,6 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { API_URL } from "../constants";
 import PropTypes from "prop-types";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
@@ -10,53 +8,56 @@ import dayjs from "dayjs";
 import "dayjs/locale/fi";
 import utc from "dayjs/plugin/utc";
 import Swal from "sweetalert2";
+import { deleteShoppinglist, getShoppinglists } from "../API/Apis";
 
 dayjs.extend(utc);
 
 function ViewShoppinglists() {
-  const [shoppinglists, setShoppinglists] = useState([]);
 
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    loadShoppinglists();
-  }, []);
+  const {
+    isLoading,
+    isError,
+    data: shoppinglists,
+    error,
+  } = useQuery({
+    queryKey: ["shoppinglists"],
+    queryFn: getShoppinglists,
+  });
 
-  const loadShoppinglists = async () => {
-    try {
-      const result = await axios.get(`${API_URL}/shoppinglists`);
-      setShoppinglists(result.data);
-    } catch (error) {
-      console.error("Error loading shoppinglists:", error);
+  const deleteShoppinglistMutation = useMutation({
+    mutationFn: deleteShoppinglist,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['shoppinglists']});
     }
-  };
-  
+  });
 
-  const deleteShoppinglist = async (shoppinglistId) => {
-    try {
-      const confirmResult = await Swal.fire({
-        title: "Are you sure you want to delete this?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-
-      if (confirmResult.isConfirmed) {
+ 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure you want to delete this?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
         Swal.fire({
           title:"Deleted!",
           text: "Shoppinglist has been deleted",
           icon: "success",
 
         })
-        await axios.delete(`${API_URL}/shoppinglists/${shoppinglistId}`);
-        loadShoppinglists(shoppinglistId);
+        deleteShoppinglistMutation.mutate(id);
       }
-    } catch (error) {
-      console.error("Error deleting shoppinglist:", error);
-    }
+    });
   };
+
+  if (isLoading) return "loading...";
+  if (isError) return `Error: ${error.message}`;
 
   const shoppinglistItems = shoppinglists.map((shoppinglist) => (
     <div key={shoppinglist.id} className="shoppinglist-item">
@@ -77,12 +78,12 @@ function ViewShoppinglists() {
       <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>
         View Shoppinglist
       </Link>
-      <Link
+      { <Link
         className="button"
-        onClick={() => deleteShoppinglist(shoppinglist.id)}
+        onClick={() => handleDelete(shoppinglist.id)}
       >
         Delete shoppinglist
-      </Link>
+      </Link> }
     </div>
   ));
 

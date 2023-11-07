@@ -1,6 +1,11 @@
 import "./App.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import ProductList from "./components/ProductList";
 import EditProduct from "./components/EditProduct";
 import AddProduct from "./components/AddProduct";
@@ -9,8 +14,11 @@ import ShoppingList from "./components/ShoppingList";
 import AddList from "./components/AddList";
 import SignUp from "./components/SignUp";
 
+const queryClient = new QueryClient()
+
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <div>
       <Router>
         <Routes>
@@ -24,6 +32,8 @@ function App() {
         </Routes>
       </Router>
     </div>
+    <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 
