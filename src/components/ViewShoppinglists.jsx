@@ -1,14 +1,14 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Theme } from "@radix-ui/themes";
+import { Theme, IconButton} from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fi";
 import utc from "dayjs/plugin/utc";
 import Swal from "sweetalert2";
 import { deleteShoppinglist, getShoppinglists } from "../API/Apis";
-
+import { TrashIcon } from "@radix-ui/react-icons";
 dayjs.extend(utc);
 
 function ViewShoppinglists() {
@@ -77,12 +77,18 @@ function ViewShoppinglists() {
       <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>
         View Shoppinglist
       </Link>
+     
        <Link
         className="button"
         onClick={() => handleDelete(shoppinglist.id)}
+        style={{backgroundColor: "red"}}
       >
-        Delete shoppinglist
+         <IconButton variant="ghost">
+        <TrashIcon></TrashIcon>
+     
+      </IconButton>
       </Link> 
+    
     </div>
   ));
 

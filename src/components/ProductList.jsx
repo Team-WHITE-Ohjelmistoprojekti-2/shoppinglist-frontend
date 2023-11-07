@@ -7,12 +7,14 @@ import "@radix-ui/themes/styles.css";
 import RangeInput from "./RangeInput";
 import "./RangeInput.css";
 import { Theme } from "@radix-ui/themes";
-import RadixUITable from "./RadixUITable";
+import MuiTable from "./MuiTable";
+import TableContainer from '@mui/material/TableContainer';
+import Paper from '@mui/material/Paper';
 
 
 function ProductList() {
   const [product, setProduct] = useState([]);
-  const [backgroundColor, setBackgroundColor] = useState("white"); // State for background color
+  const [backgroundColor, setBackgroundColor] = useState("white"); 
 
   useEffect(() => {
     loadProducts();
@@ -95,79 +97,27 @@ function ProductList() {
     );
     return `rgba(${result.join(",")})`;
   }
-
-  const tableHeader = (
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Details</th>
-        <th>Shoppinglist name</th>
-        {/*         <th></th>
-         */}{" "}
-        <th></th>
-      </tr>
-    </thead>
-  );
-
-  const listItems = product.map((product) => (
-    <tr key={product.id}>
-      <td style={{ backgroundColor }}>
-        <div>{product.name}</div>
-      </td>
-      <td style={{ backgroundColor }}>
-        <div>{product.quantity == 0 ? "1" : product.quantity}</div>
-      </td>
-      <td style={{ backgroundColor }}>
-        <div>{product.price == null ? "" : product.price + "€"}</div>
-      </td>
-      <td style={{ backgroundColor }}>
-        <div>{product.details}</div>
-      </td>
-      <td style={{ backgroundColor }}>
-        <div>{product.shoppinglistName}</div>
-      </td>
-      {/*  <td style={{ backgroundColor }}>
-        <Link to={`/edit/${product.id}`}>Edit</Link>
-      </td> */}
-      <td style={{ backgroundColor }}>
-        {/*         <Button
-          color="crimson"
-          variant="classic"
-          onClick={() => deleteProduct(product.id)}
-        >
-          Delete
-        </Button> */}
-        <Link className="button" onClick={() => deleteProduct(product.id)}>
-          Delete
-        </Link>
-      </td>
-    </tr>
-  ));
-
   return (
     <Theme grayColor="sand" radius="large" scaling="95%">
-      <div className="slider-container">
-        <RadixUITable />
-        <p>Table color slider beta 0.1</p>
-        <RangeInput
-          onValueChange={handleSliderChange}
-          label="Background Opacity"
-        />
-      </div>
-      <div className="root-container">
-        <Link className="button" to={`/`}>
-          View shoppinglists
-        </Link>
-        <table>
-          {tableHeader}
-          <tbody>{listItems}</tbody>
-        </table>
-        
-      </div>
-    </Theme>
+    <div className="slider-container">
+    <TableContainer component={Paper}>
+
+      <MuiTable
+        productData={product}
+        deleteProduct={deleteProduct}
+        backgroundColor={backgroundColor} 
+      />
+        </TableContainer>
+
+      <p>Table color slider beta 0.1</p>
+      <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
+    </div>
+    <div className="root-container">
+      <Link className="button" to={`/`}>
+        View shoppinglists
+      </Link>
+    </div>
+  </Theme>
   );
 }
-
 export default ProductList;
