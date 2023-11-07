@@ -1,18 +1,27 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate} from "react-router-dom";
-import { API_URL } from "../constants";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addShoppinglist} from "../API/Apis";
 
 
 function AddList() {
   let navigate = useNavigate();
- 
+  const queryClient = useQueryClient();
 
   const [list, setList] = useState({
     name: "",
     createdAt: "",
-    updatedAt: "",
+    //updatedAt: "",
   });
+  const { mutate } = useMutation( {
+    mutationFn: addShoppinglist,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["shoppinglists"]);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });  
 
   const onInputChange = (e) => {
     setList({ ...list, [e.target.name]: e.target.value });
@@ -22,15 +31,11 @@ function AddList() {
     navigate(`/`);
   };
 
-  const onSubmit = async (e) => {
-    console.log(list);
+  const onSubmit = (e) => {
     e.preventDefault();
-    try {
-      await axios.post(`${API_URL}/shoppinglists`, list);
-      navigate(`/`);
-    } catch (error) {
-      console.error("Error adding list:", error);
-    }
+    console.log(list); // Verify the data in the console
+    mutate(list); // Call the mutate function with the list data
+    navigate(`/`);
   };
 
   return (
@@ -59,7 +64,7 @@ function AddList() {
             hidden
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="updatedAt"></label>
           <input
             type="text"
@@ -68,7 +73,7 @@ function AddList() {
             defaultValue={list.updatedAt} // Käytä defaultValue-ominaisuutta
             hidden
           />
-        </div>
+        </div> */}
         <button type="submit">Add List</button>
         <button type="button" onClick={handleCancel}>
           Cancel

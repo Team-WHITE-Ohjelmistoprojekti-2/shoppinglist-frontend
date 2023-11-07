@@ -16,3 +16,14 @@ export async function deleteShoppinglist(shoppinglistId) {
       throw error; // Re-throw the error to handle it elsewhere, if necessary
     }
   }
+  export async function addShoppinglist(list) {
+    try {
+      const result = await axios.post(`${API_URL}/shoppinglists`, list, {
+      });
+      return result.data;
+    } catch (error) {
+      // Handle error if needed
+      console.error("Error creating list:", error);
+      throw error; // Re-throw the error to handle it elsewhere, if necessary
+    }
+  }
