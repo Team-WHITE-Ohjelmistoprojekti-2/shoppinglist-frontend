@@ -77,12 +77,12 @@ function ViewShoppinglists() {
       <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>
         View Shoppinglist
       </Link>
-      { <Link
+       <Link
         className="button"
         onClick={() => handleDelete(shoppinglist.id)}
       >
         Delete shoppinglist
-      </Link> }
+      </Link> 
     </div>
   ));
 

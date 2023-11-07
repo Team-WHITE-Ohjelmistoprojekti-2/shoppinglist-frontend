@@ -13,6 +13,8 @@ function AddList() {
     createdAt: "",
     //updatedAt: "",
   });
+  const { name } = list;
+
   const { mutate } = useMutation( {
     mutationFn: addShoppinglist,
     onSuccess: () => {
@@ -30,7 +32,7 @@ function AddList() {
   const handleCancel = () => {
     navigate(`/`);
   };
-
+  
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(list); // Verify the data in the console
@@ -39,7 +41,7 @@ function AddList() {
   };
 
   return (
-    <div className="add-form">
+    <div className="edit-form">
       <h2>Add List</h2>
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
@@ -49,7 +51,7 @@ function AddList() {
             id="name"
             placeholder="List name"
             name="name"
-            value={list.name}
+            value={name}
             onChange={(e) => onInputChange(e)}
             required
           />
