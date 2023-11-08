@@ -109,7 +109,7 @@ function ProductList() {
       />
         </TableContainer>
 
-      <p>Table color slider beta 0.1</p>
+      <p>Table color slider beta 0.2</p>
       <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
     </div>
     <div className="root-container">
