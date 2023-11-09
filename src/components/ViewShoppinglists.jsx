@@ -60,7 +60,9 @@ function ViewShoppinglists() {
 
   const shoppinglistItems = shoppinglists.map((shoppinglist) => (
     <div key={shoppinglist.id} className="shoppinglist-item">
-      <h1>{shoppinglist.name}</h1>
+      <h1>{shoppinglist.name}  <Link className="button" to={`/update/${shoppinglist.id}`}>
+          Edit
+        </Link></h1>
       <p>{shoppinglist.details}</p>
       <p>
         Created:{" "}
@@ -84,11 +86,9 @@ function ViewShoppinglists() {
         style={{backgroundColor: "red"}}
       >
          <IconButton variant="ghost">
-        <TrashIcon></TrashIcon>
-     
+        <TrashIcon></TrashIcon> 
       </IconButton>
-      </Link> 
-    
+      </Link>    
     </div>
   ));
 
