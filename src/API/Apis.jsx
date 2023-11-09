@@ -46,11 +46,26 @@ export async function addShoppinglist(list) {
   }
 }
 
+/*
 export async function editShoppinglist(updatedList) {
   try {
     const result = await axios.put(
       `${API_URL}/shoppinglists/${updatedList.id}`,
-      { name: updatedList.updatedList.name }
+      { name: updatedList.updatedList.name }  // Only name needed when editing list
+    );
+    return result.data;
+  } catch (error) {
+    // Handle error if needed
+    console.error("Error updating list:", error);
+    throw error; // Re-throw the error to handle it elsewhere, if necessary
+  }
+}*/
+
+export async function editShoppinglist(updatedList) {
+  try {
+    const result = await axios.put(
+      `${API_URL}/shoppinglists/${updatedList.id}`,
+      updatedList
     );
     return result.data;
   } catch (error) {

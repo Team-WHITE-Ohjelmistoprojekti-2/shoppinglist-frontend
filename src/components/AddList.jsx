@@ -10,8 +10,6 @@ function AddList() {
 
   const [list, setList] = useState({
     name: "",
-    createdAt: "",
-    //updatedAt: "",
   });
   const { name } = list;
 
@@ -56,26 +54,6 @@ function AddList() {
             required
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="createdAt"></label>
-          <input
-            type="text"
-            id="createdAt"
-            name="createdAt"
-            defaultValue={list.createdAt} // Käytä defaultValue-ominaisuutta
-            hidden
-          />
-        </div>
-        {/* <div className="form-group">
-          <label htmlFor="updatedAt"></label>
-          <input
-            type="text"
-            id="updatedAt"
-            name="updatedAt"
-            defaultValue={list.updatedAt} // Käytä defaultValue-ominaisuutta
-            hidden
-          />
-        </div> */}
         <button type="submit">Add List</button>
         <button type="button" onClick={handleCancel}>
           Cancel

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editShoppinglist, getShoppinglistById } from "../API/Apis";
 
 function EditList() {
@@ -8,9 +8,12 @@ function EditList() {
   let navigate = useNavigate();
   const queryClient = useQueryClient();
   const {
-    isLoading,
-    data: shoppinglist,
-  } = useQuery({
+     isLoading,
+     isError,
+     data: shoppinglist,
+     error
+     } 
+     = useQuery({
     queryKey: ["shoppinglists", id],
     queryFn: () => getShoppinglistById(id),
   });
@@ -19,18 +22,16 @@ function EditList() {
     name: "",
   });
 
-  const { name } = list;
-
   useEffect(() => {
     if (shoppinglist) {
-      setList(shoppinglist);
+      setList({ ...shoppinglist });
     }
   }, [shoppinglist]);
 
   const { mutate } = useMutation({
     mutationFn: editShoppinglist,
     onSuccess: () => {
-      queryClient.invalidateQueries(["shoppinglist"]);
+      queryClient.invalidateQueries(["shoppinglists"]);
       navigate(`/`);
     },
     onError: (err) => {
@@ -39,10 +40,7 @@ function EditList() {
   });
 
   const onInputChange = (e) => {
-    setList((prevList) => ({
-      ...prevList,
-      [e.target.name]: e.target.value
-    }));
+    setList({ ...list, [e.target.name]: e.target.value });
   };
 
   const handleCancel = () => {
@@ -51,23 +49,23 @@ function EditList() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(list); // Tarkista datan arvo konsolissa
-    mutate({ id, updatedList: list }); // Kutsu mutate-funktiota listan datalla ja ID:llä
+    console.log(list);
+    mutate({ id, ...list });
   };
+  if (isLoading) return "loading...";
+  if (isError) return `Error: ${error.message}`;
 
   return (
     <div className="edit-form">
       <h2>Edit List</h2>
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && (
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"
               name="name"
-              value={name}
+              value={list.name}
               onChange={(e) => onInputChange(e)}
               required
             />
@@ -77,7 +75,6 @@ function EditList() {
             Cancel
           </button>
         </form>
-      )}
     </div>
   );
 }
