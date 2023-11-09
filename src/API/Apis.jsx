@@ -47,7 +47,7 @@ export async function deleteShoppinglist(id) {
 
   export async function editShoppinglist(updatedList) {
     try {
-        const result = await axios.put(`${API_URL}/shoppinglists/${updatedList.id}`, updatedList);
+        const result = await axios.put(`${API_URL}/shoppinglists/${updatedList.id}`, updatedList, {});
         return result.data;
     } catch (error) {
         // Handle error if needed

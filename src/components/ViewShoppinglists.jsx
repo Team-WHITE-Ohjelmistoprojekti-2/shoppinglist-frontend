@@ -69,13 +69,17 @@ function ViewShoppinglists() {
         {dayjs
           .utc(shoppinglist.createdAt)
           .locale("fi")
-          .utcOffset(2)
+          //.utcOffset(2)
           .format("DD.MM.YYYY  HH:mm")}
       </p>
-      
-
-      {/* <p>Updated: {formatDateTime(shoppinglist.updatedAt)}</p>   */}
-
+       <p>
+        Updated:{" "}
+        {dayjs
+          .utc(shoppinglist.updatedAt)
+          .locale("fi")
+          //.utcOffset(0)
+          .format("DD.MM.YYYY  HH:mm")}
+      </p> 
       <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>
         View Shoppinglist
       </Link>
