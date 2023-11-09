@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
 import { signupUser } from "../API/Apis";
+import * as validator from "../utility/validator";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -11,9 +12,12 @@ function SignUp() {
     password: "",
   });
   const [errorMsg, setErrorMsg] = useState('');
+  const [usernameValidationMsg, setUsernameValidationMsg] = useState('');
+  const [passwordValidationMsg, setPasswordValidationMsg] = useState('');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  // Sends signup form to backend
   const { mutate } = useMutation({
     mutationFn: signupUser,
     onSuccess: (data) => {
@@ -25,13 +29,31 @@ function SignUp() {
     },
     onError: (err) => {
       console.log(err.response.data);
-      setErrorMsg(err.response.data.map(i => i + '. '));
+      setErrorMsg(err.response.data);
     },
   });
 
+  // Checks if form data is valid.
+  // Sets validation messages for all invalid fields.
+  const isValidFormData = () => {
+    let validForm = true;
+
+    if (!validator.validateUsername(formData.username)) {
+      setUsernameValidationMsg(validator.usernameInvalidMessage);
+      validForm = false;
+    } else setUsernameValidationMsg('');
+
+    if (!validator.validatePassword(formData.password)) {
+      setPasswordValidationMsg(validator.passwordInvalidMessage);
+      validForm = false;
+    } else setPasswordValidationMsg('');
+
+    return validForm;
+  }
+
   const onSubmit = () => {
-    console.log(formData);
-    mutate(formData);
+    setErrorMsg('');
+    if (isValidFormData()) mutate(formData);
   };
 
   return (
@@ -52,6 +74,7 @@ function SignUp() {
                 setFormData({ ...formData, username: e.target.value })
               }
             />
+            <Text style={{ color: 'red' }}>{ usernameValidationMsg }</Text>
             <Text align="left" size="2" weight="bold">
               Password
             </Text>
@@ -63,6 +86,7 @@ function SignUp() {
                 setFormData({ ...formData, password: e.target.value })
               }
             />
+            <Text style={{ color: 'red' }}>{ passwordValidationMsg }</Text>
             <Text>{ errorMsg }</Text>
             <Button color="crimson" mt="4" onClick={() => onSubmit()}>
               Create Account
