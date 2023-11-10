@@ -1,12 +1,14 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../constants";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ProductForm from "./ProductForm"; // Import the ProductForm component
+import { addProduct } from "../API/Apis";
 
 function AddProduct() {
   let navigate = useNavigate();
   const { id } = useParams();
+  const queryClient = useQueryClient();
+
 
   const [product, setProduct] = useState({
     name: "",
@@ -15,6 +17,15 @@ function AddProduct() {
     details: "",
     shoppinglistId: id,
   });
+  const { mutate } = useMutation( {
+    mutationFn: addProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["products"]);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });  
 
   const onInputChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -23,11 +34,11 @@ function AddProduct() {
   const handleCancel = () => {
     navigate(`/shoppinglist/${id}`);
   };
-
+ 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/products`, product);
+      await mutate(product);
       navigate(`/shoppinglist/${id}`);
     } catch (error) {
       console.error("Error adding product:", error);

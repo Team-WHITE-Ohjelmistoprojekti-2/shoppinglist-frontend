@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../constants";
 
-//Shopping list Crud
+//SHOPPINGLIST
 export const getShoppinglistById = async (id) => {
   try {
     const result = await axios.get(`${API_URL}/shoppinglists/${id}`);
@@ -46,21 +46,6 @@ export async function addShoppinglist(list) {
   }
 }
 
-/*
-export async function editShoppinglist(updatedList) {
-  try {
-    const result = await axios.put(
-      `${API_URL}/shoppinglists/${updatedList.id}`,
-      { name: updatedList.updatedList.name }  // Only name needed when editing list
-    );
-    return result.data;
-  } catch (error) {
-    // Handle error if needed
-    console.error("Error updating list:", error);
-    throw error; // Re-throw the error to handle it elsewhere, if necessary
-  }
-}*/
-
 export async function editShoppinglist(updatedList) {
   try {
     const result = await axios.put(
@@ -74,7 +59,20 @@ export async function editShoppinglist(updatedList) {
     throw error; // Re-throw the error to handle it elsewhere, if necessary
   }
 }
+//PRODUCT
+export async function addProduct(product) {
+  try {
+    const result = await axios.post(`${API_URL}/products`, product, {});
+    return result.data;
+  } catch (error) {
+    // Handle error if needed
+    console.error("Error creating list:", error);
+    throw error; // Re-throw the error to handle it elsewhere, if necessary
+  }
+}
 
+
+//USER
 export async function signupUser(signupData) {
   try {
     const result = await axios.post(

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-
 const ProductForm = ({
   name,
   quantity,
@@ -31,7 +30,7 @@ const ProductForm = ({
         <div className="form-group">
           <label htmlFor="quantity">Quantity</label>
           <input
-            type="text"
+            type="number"
             id="quantity"
             placeholder="Quantity"
             name="quantity"
@@ -74,20 +73,20 @@ const ProductForm = ({
 };
 
 ProductForm.propTypes = {
+  name: PropTypes.string,
+  quantity: PropTypes.number,
+  price: PropTypes.string,
+  details: PropTypes.string,
+  product: PropTypes.shape({
     name: PropTypes.string,
-    quantity: PropTypes.string,
+    quantity: PropTypes.number,
     price: PropTypes.string,
     details: PropTypes.string,
-    product: PropTypes.shape({
-      name: PropTypes.string,
-      quantity: PropTypes.string,
-      price: PropTypes.string,
-      details: PropTypes.string,
-    }),
-    isEdit: PropTypes.bool.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    onInputChange: PropTypes.func.isRequired,
-    handleCancel: PropTypes.func.isRequired,
-  };
-  
-  export default ProductForm;
+  }),
+  isEdit: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
+};
+
+export default ProductForm;
