@@ -4,8 +4,8 @@ import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editShoppinglist, getShoppinglistById } from "../API/Apis";
 
 function EditList() {
-  const { id } = useParams();
   let navigate = useNavigate();
+  const { id } = useParams();
   const queryClient = useQueryClient();
   const {
      isLoading,
@@ -50,7 +50,11 @@ function EditList() {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(list);
-    mutate({ id, ...list });
+    try {
+      await mutate({ id, ...list });
+    } catch (error) {
+      console.error("Error editing list:", error);
+    }
   };
   if (isLoading) return "loading...";
   if (isError) return `Error: ${error.message}`;

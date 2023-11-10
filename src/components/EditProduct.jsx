@@ -1,12 +1,23 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../constants";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { editProduct, getProductById } from "../API/Apis";
 import ProductForm from "./ProductForm"; 
 
 function EditProduct() {
   let navigate = useNavigate();
   const { id} = useParams();
+  const queryClient = useQueryClient();
+  const {
+    isLoading,
+    isError,
+    data: dataProduct,
+    error
+    } 
+    = useQuery({
+   queryKey: ["products", id],
+   queryFn: () => getProductById(id),
+ });
   const [product, setProduct] = useState({
     name: "",
     quantity: "",
@@ -14,47 +25,49 @@ function EditProduct() {
     details: "",
     shoppinglistId: id,
   });
-  const { name, quantity, price, details } = product;
+
+  useEffect(() => {
+    if (dataProduct) {
+      setProduct({ ...dataProduct });
+    }
+  }, [dataProduct]);
+  const { mutate } = useMutation({
+    mutationFn: editProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["products"]);
+      navigate(`/shoppinglist/${product.shoppinglistId}`);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
 
   const onInputChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
-  };
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`${API_URL}/products/${id}`, product);
-      navigate(`/shoppinglist/${product.shoppinglistId}`);
-    } catch (error) {
-      console.error("Error editing product:", error);
-    }
   };
   const handleCancel = () => {
     navigate(`/shoppinglist/${product.shoppinglistId}`);
   };
 
-  const loadProducts = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const result = await axios.get(`${API_URL}/products/${id}`);
-      setProduct(result.data);
+      await mutate({id, ...product})
+      navigate(`/shoppinglist/${product.shoppinglistId}`);
     } catch (error) {
-      console.error("Error loading product:", error);
+      console.error("Error editing product:", error);
     }
   };
 
-  console.log(id);
-  console.log(product);
+  if (isLoading) return "loading...";
+  if (isError) return `Error: ${error.message}`;
 
   return (
     <ProductForm
-    name={name}
-    quantity={quantity}
-    price={price}
-    details={details}
+    name={product.name}
+    quantity={product.quantity}
+    price={product.price}
+    details={product.details}
     product={product}
     isEdit={true}
     onSubmit={onSubmit}

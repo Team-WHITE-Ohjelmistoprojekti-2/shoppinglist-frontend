@@ -60,13 +60,37 @@ export async function editShoppinglist(updatedList) {
   }
 }
 //PRODUCT
+export const getProductById = async (id) => {
+  try {
+    const result = await axios.get(`${API_URL}/products/${id}`);
+    return result.data;
+  } catch (error) {
+    // Handle error if needed
+    console.error(`Error fetching product with ID ${id}:`, error);
+    throw error; // Re-throw the error to handle it elsewhere, if necessary
+  }
+};
+
 export async function addProduct(product) {
   try {
     const result = await axios.post(`${API_URL}/products`, product, {});
     return result.data;
   } catch (error) {
     // Handle error if needed
-    console.error("Error creating list:", error);
+    console.error("Error creating Product:", error);
+    throw error; // Re-throw the error to handle it elsewhere, if necessary
+  }
+}
+export async function editProduct(updatedProduct) {
+  try {
+    const result = await axios.put(
+      `${API_URL}/products/${updatedProduct.id}`,
+      updatedProduct
+    );
+    return result.data;
+  } catch (error) {
+    // Handle error if needed
+    console.error("Error updating Product:", error);
     throw error; // Re-throw the error to handle it elsewhere, if necessary
   }
 }
