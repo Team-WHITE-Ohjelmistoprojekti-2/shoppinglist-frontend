@@ -13,6 +13,7 @@ import ViewShoppinglists from "./components/ViewShoppinglists";
 import ShoppingList from "./components/ShoppingList";
 import AddList from "./components/AddList";
 import SignUp from "./components/SignUp";
+import SignUpConfirm from "./components/SignUpConfirm";
 import Login from "./components/Login";
 import EditList from "./components/EditList";
 
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/update/:id" element={<EditList />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup/confirm" element={<SignUpConfirm />} />
         </Routes>
       </Router>
     </div>

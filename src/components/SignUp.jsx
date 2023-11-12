@@ -24,7 +24,7 @@ function SignUp() {
       if (data.status === 200) {
         console.log('success bro!')
         queryClient.invalidateQueries(["registration"]);
-        navigate(`/`);
+        navigate(`/signup/confirm`);
       }
     },
     onError: (err) => {
