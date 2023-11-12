@@ -8,7 +8,7 @@ import "dayjs/locale/fi";
 import utc from "dayjs/plugin/utc";
 import Swal from "sweetalert2";
 import { deleteShoppinglist, getShoppinglists } from "../API/Apis";
-import { TrashIcon } from "@radix-ui/react-icons";
+import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 dayjs.extend(utc);
 
 function ViewShoppinglists() {
@@ -60,8 +60,13 @@ function ViewShoppinglists() {
 
   const shoppinglistItems = shoppinglists.map((shoppinglist) => (
     <div key={shoppinglist.id} className="shoppinglist-item">
-      <h1>{shoppinglist.name}  <Link className="button" to={`/update/${shoppinglist.id}`}>
-          Edit
+      <h1>{shoppinglist.name}  <Link  to={`/update/${shoppinglist.id}`}>
+          <IconButton>
+            <Pencil1Icon width={35} height={35}>
+
+            </Pencil1Icon>
+
+          </IconButton>
         </Link></h1>
       <p>{shoppinglist.details}</p>
       <p>
@@ -99,7 +104,7 @@ function ViewShoppinglists() {
   return (
     //Inside here you can put some cool stuffs later on
     <Theme>
-      <div className="view-shoppinglists">
+      <div className="view-shoppinglists" style={{ overflowY: 'scroll', height: '400px'}}>
         <Flex justify="center" direction="row" gap="2" m={"5"}>
           <Link to={`/signup`}>
             <Button color="crimson">

@@ -98,8 +98,9 @@ function ProductList() {
     return `rgba(${result.join(",")})`;
   }
   return (
+
     <Theme grayColor="sand" radius="large" scaling="95%">
-    <div className="slider-container">
+    <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
     <TableContainer component={Paper}>
 
       <MuiTable
