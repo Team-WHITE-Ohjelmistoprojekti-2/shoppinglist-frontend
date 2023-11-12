@@ -98,27 +98,27 @@ function ProductList() {
     return `rgba(${result.join(",")})`;
   }
   return (
-
     <Theme grayColor="sand" radius="large" scaling="95%">
-    <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
-    <TableContainer component={Paper}>
-
-      <MuiTable
-        productData={product}
-        deleteProduct={deleteProduct}
-        backgroundColor={backgroundColor} 
-      />
+      <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
+        <TableContainer component={Paper}>
+          {/* Render the MuiTable component */}
+          <MuiTable
+            productData={product}
+            deleteProduct={deleteProduct}
+            backgroundColor={backgroundColor}
+            
+          />
         </TableContainer>
 
-      <p>Table color slider beta 0.2</p>
-      <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
-    </div>
-    <div className="root-container">
-      <Link className="button" to={`/`}>
-        View shoppinglists
-      </Link>
-    </div>
-  </Theme>
+        <p>Table color slider beta 0.2</p>
+        <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
+      </div>
+      <div className="root-container">
+        <Link className="button" to={`/`}>
+          View shoppinglists
+        </Link>
+      </div>
+    </Theme>
   );
 }
 export default ProductList;
