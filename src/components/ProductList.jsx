@@ -10,7 +10,7 @@ import { Theme } from "@radix-ui/themes";
 import MuiTable from "./MuiTable";
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
-
+import DropDownMenuComponent from "./DropDownMenuComponent";
 
 function ProductList() {
   const [product, setProduct] = useState([]);
@@ -98,6 +98,7 @@ function ProductList() {
     return `rgba(${result.join(",")})`;
   }
   return (
+    
     <Theme grayColor="sand" radius="large" scaling="95%">
       <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
         <TableContainer component={Paper}>
@@ -118,6 +119,10 @@ function ProductList() {
           View shoppinglists
         </Link>
       </div>
+      <DropDownMenuComponent />
+      <Link className="button" to={`/`}>
+          Add Products to shoppinglist
+        </Link>
     </Theme>
   );
 }
