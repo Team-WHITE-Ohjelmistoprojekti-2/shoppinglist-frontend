@@ -92,7 +92,7 @@ function SignUp() {
               Create Account
             </Button>
             <Text align="center" mt="2" as="span">
-              Already have an account? <Link to="/login">Sign In</Link>
+              Already have an account? <Link to="/login">Login</Link>
             </Text>
           </Flex>
         </Card>

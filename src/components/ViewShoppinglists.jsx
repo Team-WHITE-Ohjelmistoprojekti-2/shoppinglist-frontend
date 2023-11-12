@@ -1,7 +1,7 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Theme, IconButton} from "@radix-ui/themes";
+import { Theme, IconButton, Flex, Button } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fi";
@@ -100,12 +100,18 @@ function ViewShoppinglists() {
     //Inside here you can put some cool stuffs later on
     <Theme>
       <div className="view-shoppinglists">
-        <Link className="button" to={`/signup`}>
-          Sign Up
-        </Link>
-        <Link className="button" to={`/login`}>
-          Login
-        </Link>
+        <Flex justify="center" direction="row" gap="2" m={"5"}>
+          <Link to={`/signup`}>
+            <Button color="crimson">
+              Create Account
+            </Button>
+          </Link>
+          <Link to={`/login`}>
+            <Button color="crimson">
+              Login
+            </Button>
+          </Link>
+        </Flex>
 
         <Link className="button" to={`/productlist`}>
           View productlist
