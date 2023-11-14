@@ -104,7 +104,7 @@ function ViewShoppinglists() {
   return (
     //Inside here you can put some cool stuffs later on
     <Theme>
-      <div className="view-shoppinglists" style={{ overflowY: 'scroll', height: '400px'}}>
+      <div className="view-shoppinglists" style={{marginTop: 70}}>
         <Flex justify="center" direction="row" gap="2" m={"5"}>
           <Link to={`/signup`}>
             <Button color="crimson">
@@ -127,7 +127,7 @@ function ViewShoppinglists() {
           Add a new Shoppinglist
         </Link>
 
-        <div className="shoppinglist-container">{shoppinglistItems}</div>
+        <div className="shoppinglist-container" style={{ overflowY: 'scroll', height: '400px'}}>{shoppinglistItems}</div>
       </div>
     </Theme>
   );
