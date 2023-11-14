@@ -109,3 +109,19 @@ export async function signupUser(signupData) {
     throw error;
   }
 }
+
+export async function loginUser(signupData) {
+  try {
+    const result = await axios.post(
+      `${API_URL}/registration/login`,
+      signupData,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    return result;
+  } catch (error) {
+    console.error("Failed to login user:", error);
+    throw error;
+  }
+}
