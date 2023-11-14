@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ProductForm from "./ProductForm"; // Import the ProductForm component
-import { addProduct } from "../API/Apis";
+import { addProduct } from "../../API/Apis";
 
 function AddProduct() {
   let navigate = useNavigate();

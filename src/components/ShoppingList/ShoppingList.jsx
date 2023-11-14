@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { API_URL } from "../constants";
+import { API_URL } from "../../constants";
 import { IconButton } from "@radix-ui/themes";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 

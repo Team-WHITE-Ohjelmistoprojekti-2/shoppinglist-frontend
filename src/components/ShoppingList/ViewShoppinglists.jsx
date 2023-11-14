@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/fi";
 import utc from "dayjs/plugin/utc";
 import Swal from "sweetalert2";
-import { deleteShoppinglist, getShoppinglists } from "../API/Apis";
+import { deleteShoppinglist, getShoppinglists } from "../../API/Apis";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 dayjs.extend(utc);
 

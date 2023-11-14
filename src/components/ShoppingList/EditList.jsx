@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import { editShoppinglist, getShoppinglistById } from "../API/Apis";
+import { editShoppinglist, getShoppinglistById } from "../../API/Apis";
 
 function EditList() {
   let navigate = useNavigate();

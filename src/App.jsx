@@ -6,16 +6,10 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import ProductList from "./components/ProductList";
-import EditProduct from "./components/EditProduct";
-import AddProduct from "./components/AddProduct";
-import ViewShoppinglists from "./components/ViewShoppinglists";
-import ShoppingList from "./components/ShoppingList";
-import AddList from "./components/AddList";
-import SignUp from "./components/SignUp";
-import SignUpConfirm from "./components/SignUpConfirm";
+import{SignUp, SignUpConfirm} from "./components/SignUp";
 import Login from "./components/Login";
-import EditList from "./components/EditList";
+import { ProductList, AddProduct, EditProduct} from "./components/Product";
+import { ViewShoppinglists, ShoppingList, AddList, EditList } from "./components/ShoppingList";
 
 const queryClient = new QueryClient()
 

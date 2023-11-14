@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addShoppinglist} from "../API/Apis";
+import { addShoppinglist} from "../../API/Apis";
 
 
 function AddList() {

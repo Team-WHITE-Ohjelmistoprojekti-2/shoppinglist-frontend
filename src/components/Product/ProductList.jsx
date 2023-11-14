@@ -2,15 +2,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { API_URL } from "../constants";
+import { API_URL } from "../../constants";
 import "@radix-ui/themes/styles.css";
-import RangeInput from "./RangeInput";
-import "./RangeInput.css";
+import RangeInput from "./../RangeInput";
 import { Theme } from "@radix-ui/themes";
-import MuiTable from "./MuiTable";
+import MuiTable from "./../MuiTable";
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
-import DropDownMenuComponent from "./DropDownMenuComponent";
+import DropDownMenuComponent from "./../DropDownMenuComponent";
 
 function ProductList() {
   const [product, setProduct] = useState([]);

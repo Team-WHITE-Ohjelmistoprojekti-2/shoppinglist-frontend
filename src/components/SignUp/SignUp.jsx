@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
-import { signupUser } from "../API/Apis";
-import * as validator from "../utility/validator";
+import { signupUser } from "../../API/Apis";
+import * as validator from "../../utility/validator";
 
 function SignUp() {
   const [formData, setFormData] = useState({

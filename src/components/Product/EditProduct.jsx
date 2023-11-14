@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import { editProduct, getProductById } from "../API/Apis";
+import { editProduct, getProductById } from "../../API/Apis";
 import ProductForm from "./ProductForm"; 
 
 function EditProduct() {
