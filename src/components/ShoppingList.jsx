@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { API_URL } from "../constants";
+import { IconButton } from "@radix-ui/themes";
+import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 
 function ShoppingList() {
   const { id: shoppinglistId} = useParams();
@@ -57,11 +59,8 @@ function ShoppingList() {
         <th>Price</th>
         <th>Details</th>
         <th>
-          <Link className="button" to={`/addproduct/${shoppinglistId}`}>
-            Add Product
-          </Link>
         </th>
-        <th></th>
+        <th> </th>
       </tr>
     </thead>
   );
@@ -74,11 +73,19 @@ function ShoppingList() {
       <td>{product.details}</td>
       <td>
         <Link className="button" to={`/edit/${product.id}`}>
-          Edit
+        <IconButton>
+            <Pencil1Icon width={20} height={20}>
+              
+            </Pencil1Icon>
+
+          </IconButton>
         </Link>
       </td> 
       <td>
-        <button className="deletebutton" onClick={() => deleteProduct(product.id)}>Delete</button>
+        <button className="deletebutton" onClick={() => deleteProduct(product.id)}>  
+        <IconButton variant="ghost">
+        <TrashIcon></TrashIcon> 
+      </IconButton></button>
       </td>
     </tr>
   ));
@@ -94,6 +101,9 @@ function ShoppingList() {
       <Link className="button" to={`/`}>
         View shoppinglists
       </Link>
+      <Link className="button" style={{marginLeft: 20}}to={`/addproduct/${shoppinglistId}`}>
+            Add Product
+          </Link>
     </div>
   );
 }
