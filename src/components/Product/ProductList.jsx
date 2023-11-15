@@ -9,7 +9,7 @@ import { Theme } from "@radix-ui/themes";
 import MuiTable from "./../MuiTable";
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
-import DropDownMenuComponent from "./../DropDownMenuComponent";
+import DropDownMenuComponent from "./../DropDownMenu";
 
 function ProductList() {
   const [product, setProduct] = useState([]);
