@@ -1,7 +1,7 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Theme, IconButton, Flex, Button, Text } from "@radix-ui/themes";
+import { Theme, IconButton, Flex, Button, Text, Card, ScrollArea } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fi";
@@ -61,7 +61,7 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
   if (isError) return `Error: ${error.message}`;
 
   const shoppinglistItems = shoppinglists.map((shoppinglist) => (
-    <div key={shoppinglist.id} className="shoppinglist-item">
+    <Card m="2" key={shoppinglist.id} size="4">
       <h1>{shoppinglist.name}  <Link  to={`/update/${shoppinglist.id}`}>
           <IconButton>
             <Pencil1Icon width={35} height={35}>
@@ -99,14 +99,14 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
          <IconButton variant="ghost">
         <TrashIcon></TrashIcon> 
       </IconButton>
-      </Link>    
-    </div>
+      </Link>
+    </Card>
   ));
 
   return (
     //Inside here you can put some cool stuffs later on
     <Theme>
-      <div className="view-shoppinglists" style={{ marginTop: 70 }}>
+      <div className="view-shoppinglists">
         {isAuthenticated ? (
           <Fragment>
             <Flex direction="column" justify="center">
@@ -139,13 +139,10 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
         <Link className="button" to={`/addshoppinglist`}>
           Add a new Shoppinglist
         </Link>
-
-        <div
-          className="shoppinglist-container"
-          style={{ overflowY: "scroll", height: "400px" }}
-        >
+        
+        <ScrollArea mt="5" type="always" scrollbars="vertical" style={{ height: 600 }}>
           {shoppinglistItems}
-        </div>
+        </ScrollArea>
       </div>
     </Theme>
   );
