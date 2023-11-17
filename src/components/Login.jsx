@@ -34,7 +34,7 @@ function Login({ setAuthenticated }) {
     },
     onError: (err) => {
       console.log(err.response.data);
-      setErrorMsg(`Failed to login: ${err.response.data}`);
+      setErrorMsg(`Failed to login`);
     },
   });
 
@@ -71,7 +71,7 @@ function Login({ setAuthenticated }) {
                 setFormData({ ...formData, password: e.target.value })
               }
             />
-            <Text>{errorMsg}</Text>
+            <Text mt="2">{errorMsg}</Text>
             <Button color="crimson" mt="4" onClick={() => handleLogin()}>
               Login
             </Button>

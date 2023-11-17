@@ -1,7 +1,7 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Theme, IconButton, Flex, Button } from "@radix-ui/themes";
+import { Theme, IconButton, Flex, Button, Text } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fi";
@@ -9,9 +9,11 @@ import utc from "dayjs/plugin/utc";
 import Swal from "sweetalert2";
 import { deleteShoppinglist, getShoppinglists } from "../../API/Apis";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
+import PropTypes from 'prop-types';
+import { Fragment } from "react";
 dayjs.extend(utc);
 
-function ViewShoppinglists() {
+function ViewShoppinglists({isAuthenticated, handleLogout}) {
 
   const queryClient = useQueryClient();
 
@@ -104,19 +106,30 @@ function ViewShoppinglists() {
   return (
     //Inside here you can put some cool stuffs later on
     <Theme>
-      <div className="view-shoppinglists" style={{marginTop: 70}}>
-        <Flex justify="center" direction="row" gap="2" m={"5"}>
-          <Link to={`/signup`}>
-            <Button color="crimson">
-              Create Account
-            </Button>
-          </Link>
-          <Link to={`/login`}>
-            <Button color="crimson">
-              Login
-            </Button>
-          </Link>
-        </Flex>
+      <div className="view-shoppinglists" style={{ marginTop: 70 }}>
+        {isAuthenticated ? (
+          <Fragment>
+            <Flex direction="column" justify="center">
+              <Text align="center" mb="4" size="5" weight="bold">
+                You are logged in
+              </Text>
+            </Flex>
+            <Flex justify="center" mb={"5"}>
+              <Button color="red" onClick={() => handleLogout()}>
+                Log out
+              </Button>
+            </Flex>
+          </Fragment>
+        ) : (
+          <Flex justify="center" direction="row" gap="2" m={"5"}>
+            <Link to={`/signup`}>
+              <Button color="crimson">Create Account</Button>
+            </Link>
+            <Link to={`/login`}>
+              <Button color="crimson">Login</Button>
+            </Link>
+          </Flex>
+        )}
 
         <Link className="button" to={`/productlist`}>
           View productlist
@@ -127,10 +140,20 @@ function ViewShoppinglists() {
           Add a new Shoppinglist
         </Link>
 
-        <div className="shoppinglist-container" style={{ overflowY: 'scroll', height: '400px'}}>{shoppinglistItems}</div>
+        <div
+          className="shoppinglist-container"
+          style={{ overflowY: "scroll", height: "400px" }}
+        >
+          {shoppinglistItems}
+        </div>
       </div>
     </Theme>
   );
+}
+
+ViewShoppinglists.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 }
 
 export default ViewShoppinglists;
