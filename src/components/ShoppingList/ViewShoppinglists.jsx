@@ -62,14 +62,14 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
 
   const shoppinglistItems = shoppinglists.map((shoppinglist) => (
     <Card m="2" key={shoppinglist.id} size="4">
-      <h1>{shoppinglist.name}  <Link  to={`/update/${shoppinglist.id}`}>
+      <h1>
+        {shoppinglist.name}{" "}
+        <Link to={`/update/${shoppinglist.id}`}>
           <IconButton>
-            <Pencil1Icon width={35} height={35}>
-
-            </Pencil1Icon>
-
+            <Pencil1Icon width={35} height={35}></Pencil1Icon>
           </IconButton>
-        </Link></h1>
+        </Link>
+      </h1>
       <p>{shoppinglist.details}</p>
       <p>
         Created:{" "}
@@ -79,27 +79,27 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
           //.utcOffset(2)
           .format("DD.MM.YYYY  HH:mm")}
       </p>
-       <p>
+      <p>
         Updated:{" "}
         {dayjs
           .utc(shoppinglist.updatedAt)
           .locale("fi")
           //.utcOffset(0)
           .format("DD.MM.YYYY  HH:mm")}
-      </p> 
-      <Link className="button" to={`/shoppinglist/${shoppinglist.id}`}>
-        View Shoppinglist
+      </p>
+
+      <Link to={`/shoppinglist/${shoppinglist.id}`}>
+        <Button size="3" color="cyan" style={{ color: "black" }}>View Shoppinglist</Button>
       </Link>
-     
-       <Link
-        className="button"
+
+      <IconButton
+        ml="1"
+        color="red"
+        size="3"
         onClick={() => handleDelete(shoppinglist.id)}
-        style={{backgroundColor: "red"}}
       >
-         <IconButton variant="ghost">
-        <TrashIcon></TrashIcon> 
+        <TrashIcon width="24" height="24" />
       </IconButton>
-      </Link>
     </Card>
   ));
 
