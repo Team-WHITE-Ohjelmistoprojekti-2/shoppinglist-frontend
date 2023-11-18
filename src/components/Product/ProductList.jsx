@@ -99,6 +99,7 @@ function ProductList() {
   return (
     
     <Theme grayColor="sand" radius="large" scaling="95%">
+       
       <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
         <TableContainer component={Paper}>
           {/* Render the MuiTable component */}
@@ -110,18 +111,22 @@ function ProductList() {
           />
         </TableContainer>
 
-        <p>Table color slider beta 0.2</p>
-        <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
+       
       </div>
-      <div className="root-container">
-        <Link className="button" to={`/`}>
+      <p>Table color slider beta 0.2</p>
+        <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
+      <div> 
+
+      <Link className="button" to={`/`}>
           View shoppinglists
         </Link>
-      </div>
       <DropDownMenuComponent />
       <Link className="button" to={`/`}>
           Add Products to shoppinglist
         </Link>
+        </div>
+
+
     </Theme>
   );
 }

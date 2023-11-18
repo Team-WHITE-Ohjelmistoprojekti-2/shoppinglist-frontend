@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editShoppinglist, getShoppinglistById } from "../../API/Apis";
+import { Button, TextField } from "@radix-ui/themes";
+import '@radix-ui/themes/styles.css';
 
 function EditList() {
   let navigate = useNavigate();
@@ -65,7 +67,10 @@ function EditList() {
         <form onSubmit={onSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
-            <input
+            <TextField.Root>
+            <TextField.Slot>
+            </TextField.Slot>
+            <TextField.Input variant="soft"
               type="text"
               id="name"
               name="name"
@@ -73,11 +78,12 @@ function EditList() {
               onChange={(e) => onInputChange(e)}
               required
             />
+            </TextField.Root>
           </div>
-          <button type="submit">Submit</button>
-          <button type="button" onClick={handleCancel}>
+          <Button type="submit" style={{marginRight: 20}}>Submit</Button>
+          <Button type="button" onClick={handleCancel}>
             Cancel
-          </button>
+          </Button>
         </form>
     </div>
   );

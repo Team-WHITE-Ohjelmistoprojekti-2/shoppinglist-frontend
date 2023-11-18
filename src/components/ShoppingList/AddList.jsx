@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addShoppinglist} from "../../API/Apis";
-
+import { Button, TextField } from "@radix-ui/themes";
+import '@radix-ui/themes/styles.css';
 
 function AddList() {
   let navigate = useNavigate();
@@ -44,7 +45,10 @@ function AddList() {
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
-          <input
+          <TextField.Root>
+            <TextField.Slot>
+            </TextField.Slot>
+            <TextField.Input variant="soft"
             type="text"
             id="name"
             placeholder="List name"
@@ -53,11 +57,12 @@ function AddList() {
             onChange={(e) => onInputChange(e)}
             required
           />
+          </TextField.Root>
         </div>
-        <button type="submit">Add List</button>
-        <button type="button" onClick={handleCancel}>
+        <Button type="submit" style={{marginRight: 20}}>Add List</Button>
+        <Button type="button" onClick={handleCancel}>
           Cancel
-        </button>
+        </Button>
       </form>
     </div>
   );

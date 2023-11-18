@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { Button, TextField } from "@radix-ui/themes";
+import '@radix-ui/themes/styles.css';
 
 const ProductForm = ({
   name,
@@ -15,58 +17,69 @@ const ProductForm = ({
     <div className={isEdit ? "edit-form" : "add-form"}>
       <h2>{isEdit ? "Edit Product" : "Add Product"}</h2>
       <form onSubmit={(e) => onSubmit(e)}>
+        
         <div className="form-group">
           <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Product name"
-            name="name"
-            value={isEdit ? name : product.name}
-            onChange={(e) => onInputChange(e)}
-            required={!isEdit}
-          />
+          <TextField.Root>
+            <TextField.Slot>
+            </TextField.Slot>
+            <TextField.Input variant="soft"
+              placeholder="Product name"
+              name="name"
+              value={isEdit ? name : product.name}
+              onChange={(e) => onInputChange(e)}
+              required={!isEdit}
+            />
+          </TextField.Root>
         </div>
         <div className="form-group">
           <label htmlFor="quantity">Quantity</label>
-          <input
-            type="number"
-            id="quantity"
-            placeholder="Quantity"
-            name="quantity"
-            value={isEdit ? quantity : product.quantity}
-            onChange={(e) => onInputChange(e)}
-            required={!isEdit}
-          />
+          <TextField.Root>
+           
+            <TextField.Input variant="soft"
+              type="number"
+              placeholder="Quantity"
+              name="quantity"
+              value={isEdit ? quantity : product.quantity}
+              onChange={(e) => onInputChange(e)}
+              required={!isEdit}
+            />
+          </TextField.Root>
         </div>
         <div className="form-group">
           <label htmlFor="price">Price</label>
-          <input
-            type="text"
-            id="price"
-            placeholder="Price"
-            name="price"
-            value={isEdit ? price : product.price}
-            onChange={(e) => onInputChange(e)}
-          />
+          <TextField.Root>
+            <TextField.Slot>
+            </TextField.Slot>
+            <TextField.Input variant="soft"
+              type="text"
+              placeholder="Price"
+              name="price"
+              value={isEdit ? price : product.price}
+              onChange={(e) => onInputChange(e)}
+            />
+          </TextField.Root>
         </div>
         <div className="form-group">
           <label htmlFor="details">Details</label>
-          <input
-            type="text"
-            id="details"
-            placeholder="Details"
-            name="details"
-            value={isEdit ? details : product.details}
-            onChange={(e) => onInputChange(e)}
-          />
+          <TextField.Root>
+            <TextField.Slot>
+            </TextField.Slot>
+            <TextField.Input variant="soft"
+              type="text"
+              placeholder="Details"
+              name="details"
+              value={isEdit ? details : product.details}
+              onChange={(e) => onInputChange(e)}
+            />
+          </TextField.Root>
         </div>
-        <button type="submit">
+        <Button type="submit" style={{marginRight: 20}}>
           {isEdit ? "Submit" : "Add Product"}
-        </button>
-        <button type="button" onClick={handleCancel}>
+        </Button>
+        <Button type="button" onClick={handleCancel}>
           Cancel
-        </button>
+        </Button>
       </form>
     </div>
   );

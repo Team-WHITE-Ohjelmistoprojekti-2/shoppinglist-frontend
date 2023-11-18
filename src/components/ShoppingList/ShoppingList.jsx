@@ -72,8 +72,8 @@ function ShoppingList() {
       <td>{product.price == null ? "" : product.price + "€"}</td>
       <td>{product.details}</td>
       <td>
-        <Link className="button" to={`/edit/${product.id}`}>
-        <IconButton>
+        <Link  to={`/edit/${product.id}`}>
+        <IconButton variant="classic">
             <Pencil1Icon width={20} height={20}>
               
             </Pencil1Icon>
