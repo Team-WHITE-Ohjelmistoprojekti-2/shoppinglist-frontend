@@ -94,6 +94,9 @@ function SignUp() {
             <Text align="center" mt="2" as="span">
               Already have an account? <Link to="/login">Login</Link>
             </Text>
+            <Text align="center" mt="2" as="span">
+              <Link to="/ ">Back to home page</Link>
+            </Text>
           </Flex>
         </Card>
       </Theme>

@@ -78,6 +78,9 @@ function Login({ setAuthenticated }) {
             <Text align="center" mt="2" as="span">
               No account? <Link to="/signup">Create Account</Link>
             </Text>
+            <Text align="center" mt="2" as="span">
+              <Link to="/ ">Back to home page</Link>
+            </Text>
           </Flex>
         </Card>
       </Theme>
