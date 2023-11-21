@@ -28,6 +28,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
+  overflow-x: auto;
 }
 
 thead th {
@@ -44,7 +45,7 @@ td {
   align-items: center;
   padding: 8px;
   text-align: left;
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -183,6 +184,5 @@ input {
   .addbutton {
     padding: 8px 16px;
   }
-
-  
 }
+
