@@ -7,9 +7,9 @@ import { IconButton } from "@radix-ui/themes";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 
 function ShoppingList() {
-  const { id: shoppinglistId} = useParams();
+  const { id: shoppinglistId } = useParams();
   const [product, setProduct] = useState([]);
-  const [shoppinglistName, setShoppinglistName] = useState(""); 
+  const [shoppinglistName, setShoppinglistName] = useState("");
 
   useEffect(() => {
     loadShoppinglist(shoppinglistId);
@@ -24,7 +24,7 @@ function ShoppingList() {
         `${API_URL}/shoppinglists/${shoppinglistId}`
       );
       setProduct(result.data);
-      setShoppinglistName(resultname.data.name)
+      setShoppinglistName(resultname.data.name);
     } catch (error) {
       console.error("Error loading products:", error);
     }
@@ -58,8 +58,7 @@ function ShoppingList() {
         <th>Quantity</th>
         <th>Price</th>
         <th>Details</th>
-        <th>
-        </th>
+        <th></th>
         <th> </th>
       </tr>
     </thead>
@@ -72,20 +71,21 @@ function ShoppingList() {
       <td>{product.price == null ? "" : product.price + "€"}</td>
       <td>{product.details}</td>
       <td>
-        <Link  to={`/edit/${product.id}`}>
-        <IconButton variant="classic">
-            <Pencil1Icon width={20} height={20}>
-              
-            </Pencil1Icon>
-
+        <Link to={`/edit/${product.id}`}>
+          <IconButton variant="classic">
+            <Pencil1Icon width={20} height={20}></Pencil1Icon>
           </IconButton>
         </Link>
-      </td> 
+      </td>
       <td>
-        <button className="deletebutton" onClick={() => deleteProduct(product.id)}>  
-        <IconButton variant="ghost">
-        <TrashIcon></TrashIcon> 
-      </IconButton></button>
+        <IconButton
+          ml="1"
+          color="red"
+          size="3"
+          onClick={() => deleteProduct(product.id)}
+        >
+          <TrashIcon width="24" height="24" />
+        </IconButton>
       </td>
     </tr>
   ));
@@ -93,7 +93,7 @@ function ShoppingList() {
   console.log(product);
   return (
     <div className="root-container">
-       <h1>{shoppinglistName}</h1>
+      <h1>{shoppinglistName}</h1>
       <table>
         {tableHeader}
         <tbody>{listItems}</tbody>
@@ -101,9 +101,13 @@ function ShoppingList() {
       <Link className="button" to={`/`}>
         View shoppinglists
       </Link>
-      <Link className="button" style={{marginLeft: 20}}to={`/addproduct/${shoppinglistId}`}>
-            Add Product
-          </Link>
+      <Link
+        className="button"
+        style={{ marginLeft: 20 }}
+        to={`/addproduct/${shoppinglistId}`}
+      >
+        Add Product
+      </Link>
     </div>
   );
 }
