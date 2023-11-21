@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigate} from "react-router-dom";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addShoppinglist} from "../../API/Apis";
+import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addShoppinglist } from "../../API/Apis";
 import { Button, TextField } from "@radix-ui/themes";
-import '@radix-ui/themes/styles.css';
+import "@radix-ui/themes/styles.css";
 
 function AddList() {
   let navigate = useNavigate();
@@ -14,7 +14,7 @@ function AddList() {
   });
   const { name } = list;
 
-  const { mutate } = useMutation( {
+  const { mutate } = useMutation({
     mutationFn: addShoppinglist,
     onSuccess: () => {
       queryClient.invalidateQueries(["shoppinglists"]);
@@ -22,7 +22,7 @@ function AddList() {
     onError: (err) => {
       console.error(err);
     },
-  });  
+  });
 
   const onInputChange = (e) => {
     setList({ ...list, [e.target.name]: e.target.value });
@@ -31,7 +31,7 @@ function AddList() {
   const handleCancel = () => {
     navigate(`/`);
   };
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(list); // Verify the data in the console
@@ -46,21 +46,23 @@ function AddList() {
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <TextField.Root>
-            <TextField.Slot>
-            </TextField.Slot>
-            <TextField.Input variant="soft"
-            type="text"
-            id="name"
-            placeholder="List name"
-            name="name"
-            value={name}
-            onChange={(e) => onInputChange(e)}
-            required
-          />
+            <TextField.Slot></TextField.Slot>
+            <TextField.Input
+              variant="soft"
+              type="text"
+              id="name"
+              placeholder="List name"
+              name="name"
+              value={name}
+              onChange={(e) => onInputChange(e)}
+              required
+            />
           </TextField.Root>
         </div>
-        <Button type="submit" style={{marginRight: 20}}>Add List</Button>
-        <Button type="button" onClick={handleCancel}>
+        <Button type="submit" style={{ marginRight: 20 }}>
+          Add List
+        </Button>
+        <Button type="button" onClick={handleCancel} color="red">
           Cancel
         </Button>
       </form>

@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Button, TextField } from "@radix-ui/themes";
-import '@radix-ui/themes/styles.css';
+import "@radix-ui/themes/styles.css";
 
 const ProductForm = ({
   name,
@@ -17,13 +17,12 @@ const ProductForm = ({
     <div className={isEdit ? "edit-form" : "add-form"}>
       <h2>{isEdit ? "Edit Product" : "Add Product"}</h2>
       <form onSubmit={(e) => onSubmit(e)}>
-        
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <TextField.Root>
-            <TextField.Slot>
-            </TextField.Slot>
-            <TextField.Input variant="soft"
+            <TextField.Slot></TextField.Slot>
+            <TextField.Input
+              variant="soft"
               placeholder="Product name"
               name="name"
               value={isEdit ? name : product.name}
@@ -35,8 +34,8 @@ const ProductForm = ({
         <div className="form-group">
           <label htmlFor="quantity">Quantity</label>
           <TextField.Root>
-           
-            <TextField.Input variant="soft"
+            <TextField.Input
+              variant="soft"
               type="number"
               placeholder="Quantity"
               name="quantity"
@@ -49,9 +48,9 @@ const ProductForm = ({
         <div className="form-group">
           <label htmlFor="price">Price</label>
           <TextField.Root>
-            <TextField.Slot>
-            </TextField.Slot>
-            <TextField.Input variant="soft"
+            <TextField.Slot></TextField.Slot>
+            <TextField.Input
+              variant="soft"
               type="text"
               placeholder="Price"
               name="price"
@@ -63,9 +62,9 @@ const ProductForm = ({
         <div className="form-group">
           <label htmlFor="details">Details</label>
           <TextField.Root>
-            <TextField.Slot>
-            </TextField.Slot>
-            <TextField.Input variant="soft"
+            <TextField.Slot></TextField.Slot>
+            <TextField.Input
+              variant="soft"
               type="text"
               placeholder="Details"
               name="details"
@@ -74,10 +73,10 @@ const ProductForm = ({
             />
           </TextField.Root>
         </div>
-        <Button type="submit" style={{marginRight: 20}}>
+        <Button type="submit" style={{ marginRight: 20 }}>
           {isEdit ? "Submit" : "Add Product"}
         </Button>
-        <Button type="button" onClick={handleCancel}>
+        <Button type="button" onClick={handleCancel} color="red">
           Cancel
         </Button>
       </form>
