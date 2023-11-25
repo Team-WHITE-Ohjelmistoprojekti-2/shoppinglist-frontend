@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ProductForm from "./ProductForm"; // Import the ProductForm component
 import { addProduct } from "../../API/Apis";
 import useAuthEffect from "../UseAuthEffect";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function AddProduct({isAuthenticated}) {
+function AddProduct({ isAuthenticated }) {
   let navigate = useNavigate();
   useAuthEffect(isAuthenticated);
 
   const { id } = useParams();
   const queryClient = useQueryClient();
-
 
   const [product, setProduct] = useState({
     name: "",
@@ -21,7 +20,7 @@ function AddProduct({isAuthenticated}) {
     details: "",
     shoppinglistId: id,
   });
-  const { mutate } = useMutation( {
+  const { mutate } = useMutation({
     mutationFn: addProduct,
     onSuccess: () => {
       queryClient.invalidateQueries(["products"]);
@@ -29,7 +28,7 @@ function AddProduct({isAuthenticated}) {
     onError: (err) => {
       console.error(err);
     },
-  });  
+  });
 
   const onInputChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -38,7 +37,7 @@ function AddProduct({isAuthenticated}) {
   const handleCancel = () => {
     navigate(`/shoppinglist/${id}`);
   };
- 
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -56,7 +55,7 @@ function AddProduct({isAuthenticated}) {
       price={product.price}
       details={product.details}
       product={product}
-      isEdit={false} 
+      isEdit={false}
       onSubmit={onSubmit}
       onInputChange={onInputChange}
       handleCancel={handleCancel}
@@ -64,6 +63,6 @@ function AddProduct({isAuthenticated}) {
   );
 }
 AddProduct.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired
-}
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 export default AddProduct;

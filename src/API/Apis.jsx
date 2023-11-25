@@ -101,7 +101,6 @@ export async function editProduct(updatedProduct) {
   }
 }
 
-
 //USER
 export async function signupUser(signupData) {
   try {

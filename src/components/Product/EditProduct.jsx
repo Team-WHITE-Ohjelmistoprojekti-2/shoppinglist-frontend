@@ -2,25 +2,24 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editProduct, getProductById } from "../../API/Apis";
-import ProductForm from "./ProductForm"; 
+import ProductForm from "./ProductForm";
 import useAuthEffect from "../UseAuthEffect";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function EditProduct({isAuthenticated}) {
+function EditProduct({ isAuthenticated }) {
   let navigate = useNavigate();
   useAuthEffect(isAuthenticated);
-  const { id} = useParams();
+  const { id } = useParams();
   const queryClient = useQueryClient();
   const {
     isLoading,
     isError,
     data: dataProduct,
-    error
-    } 
-    = useQuery({
-   queryKey: ["products", id],
-   queryFn: () => getProductById(id),
- });
+    error,
+  } = useQuery({
+    queryKey: ["products", id],
+    queryFn: () => getProductById(id),
+  });
   const [product, setProduct] = useState({
     name: "",
     quantity: "",
@@ -55,7 +54,7 @@ function EditProduct({isAuthenticated}) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await mutate({id, ...product})
+      await mutate({ id, ...product });
       navigate(`/shoppinglist/${product.shoppinglistId}`);
     } catch (error) {
       console.error("Error editing product:", error);
@@ -67,19 +66,19 @@ function EditProduct({isAuthenticated}) {
 
   return (
     <ProductForm
-    name={product.name}
-    quantity={product.quantity}
-    price={product.price}
-    details={product.details}
-    product={product}
-    isEdit={true}
-    onSubmit={onSubmit}
-    onInputChange={onInputChange}
-    handleCancel={handleCancel}
-  />
+      name={product.name}
+      quantity={product.quantity}
+      price={product.price}
+      details={product.details}
+      product={product}
+      isEdit={true}
+      onSubmit={onSubmit}
+      onInputChange={onInputChange}
+      handleCancel={handleCancel}
+    />
   );
 }
 EditProduct.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired
-}
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 export default EditProduct;

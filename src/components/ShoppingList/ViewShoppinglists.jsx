@@ -1,8 +1,16 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
 //import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link, /*useNavigate*/ } from "react-router-dom";
-import { Theme, IconButton, Flex, Button, Text, Card, ScrollArea } from "@radix-ui/themes";
+import { Link /*useNavigate*/ } from "react-router-dom";
+import {
+  Theme,
+  IconButton,
+  Flex,
+  Button,
+  Text,
+  Card,
+  ScrollArea,
+} from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fi";
@@ -10,21 +18,20 @@ import utc from "dayjs/plugin/utc";
 import Swal from "sweetalert2";
 import { deleteShoppinglist, getShoppinglists } from "../../API/Apis";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Fragment } from "react";
 dayjs.extend(utc);
 
-function ViewShoppinglists({isAuthenticated, handleLogout}) {
+function ViewShoppinglists({ isAuthenticated, handleLogout }) {
   //const navigate = useNavigate();
   const queryClient = useQueryClient();
-  
+
   /*useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login');
     }
   }, [isAuthenticated, navigate]);*/
- 
- 
+
   const {
     isLoading,
     isError,
@@ -38,11 +45,10 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
   const deleteShoppinglistMutation = useMutation({
     mutationFn: deleteShoppinglist,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['shoppinglists']});
-    }
+      queryClient.invalidateQueries({ queryKey: ["shoppinglists"] });
+    },
   });
 
- 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure you want to delete this?",
@@ -55,11 +61,10 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          title:"Deleted!",
+          title: "Deleted!",
           text: "Shoppinglist has been deleted",
           icon: "success",
-
-        })
+        });
         deleteShoppinglistMutation.mutate(id);
       }
     });
@@ -97,19 +102,21 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
       </p>
 
       <Link to={`/shoppinglist/${shoppinglist.id}`}>
-        <Button size="3" color="cyan" style={{ color: "black" }}>View Shoppinglist</Button>
+        <Button size="3" color="cyan" style={{ color: "black" }}>
+          View Shoppinglist
+        </Button>
       </Link>
 
       {isAuthenticated && (
-      <IconButton
-        ml="1"
-        color="red"
-        size="3"
-        onClick={() => handleDelete(shoppinglist.id)}
-      >
-        <TrashIcon width="24" height="24" />
-      </IconButton>
-    )}
+        <IconButton
+          ml="1"
+          color="red"
+          size="3"
+          onClick={() => handleDelete(shoppinglist.id)}
+        >
+          <TrashIcon width="24" height="24" />
+        </IconButton>
+      )}
     </Card>
   ));
 
@@ -149,8 +156,13 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
         <Link className="button" to={`/addshoppinglist`}>
           Add a new Shoppinglist
         </Link>
-        
-        <ScrollArea mt="5" type="always" scrollbars="vertical" style={{ height: 600 }}>
+
+        <ScrollArea
+          mt="5"
+          type="always"
+          scrollbars="vertical"
+          style={{ height: 600 }}
+        >
           {shoppinglistItems}
         </ScrollArea>
       </div>
@@ -161,6 +173,6 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
 ViewShoppinglists.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
-}
+};
 
 export default ViewShoppinglists;

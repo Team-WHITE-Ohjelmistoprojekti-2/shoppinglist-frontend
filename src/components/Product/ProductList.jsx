@@ -7,17 +7,16 @@ import "@radix-ui/themes/styles.css";
 import RangeInput from "./../RangeInput";
 import { Theme } from "@radix-ui/themes";
 import MuiTable from "./../MuiTable";
-import TableContainer from '@mui/material/TableContainer';
-import Paper from '@mui/material/Paper';
+import TableContainer from "@mui/material/TableContainer";
+import Paper from "@mui/material/Paper";
 import DropDownMenuComponent from "./../DropDownMenu";
 import useAuthEffect from "../UseAuthEffect";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-
-function ProductList({isAuthenticated}) {
+function ProductList({ isAuthenticated }) {
   useAuthEffect(isAuthenticated);
   const [product, setProduct] = useState([]);
-  const [backgroundColor, setBackgroundColor] = useState("white"); 
+  const [backgroundColor, setBackgroundColor] = useState("white");
 
   useEffect(() => {
     loadProducts();
@@ -101,33 +100,35 @@ function ProductList({isAuthenticated}) {
     return `rgba(${result.join(",")})`;
   }
   return (
-    
     <Theme grayColor="sand" radius="large" scaling="95%">
       <p>Table color slider beta 0.3</p>
-      <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
-      
+      <RangeInput
+        onValueChange={handleSliderChange}
+        label="Background Opacity"
+      />
+
       <Link className="button_borders" to={`/`}>
-          Back to main page
-        </Link>
-        <DropDownMenuComponent />
-      <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
+        Back to main page
+      </Link>
+      <DropDownMenuComponent />
+      <div
+        className="slider-container"
+        style={{ overflowY: "scroll", height: "400px" }}
+      >
         <TableContainer component={Paper}>
           {/* Render the MuiTable component */}
           <MuiTable
             productData={product}
             deleteProduct={deleteProduct}
             backgroundColor={backgroundColor}
-            
           />
         </TableContainer>
-
       </div>
-      <div>
-        </div>
+      <div></div>
     </Theme>
   );
 }
 ProductList.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired
-}
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 export default ProductList;

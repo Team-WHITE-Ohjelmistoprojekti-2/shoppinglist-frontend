@@ -1,7 +1,7 @@
 import { TextField, Flex, Text, Button, Theme, Card } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { signupUser } from "../../API/Apis";
 import * as validator from "../../utility/validator";
@@ -11,9 +11,9 @@ function SignUp() {
     username: "",
     password: "",
   });
-  const [errorMsg, setErrorMsg] = useState('');
-  const [usernameValidationMsg, setUsernameValidationMsg] = useState('');
-  const [passwordValidationMsg, setPasswordValidationMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
+  const [usernameValidationMsg, setUsernameValidationMsg] = useState("");
+  const [passwordValidationMsg, setPasswordValidationMsg] = useState("");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -22,7 +22,7 @@ function SignUp() {
     mutationFn: signupUser,
     onSuccess: (data) => {
       if (data.status === 200) {
-        console.log('success bro!')
+        console.log("success bro!");
         queryClient.invalidateQueries(["registration"]);
         navigate(`/signup/confirm`);
       }
@@ -41,18 +41,18 @@ function SignUp() {
     if (!validator.validateUsername(formData.username)) {
       setUsernameValidationMsg(validator.usernameInvalidMessage);
       validForm = false;
-    } else setUsernameValidationMsg('');
+    } else setUsernameValidationMsg("");
 
     if (!validator.validatePassword(formData.password)) {
       setPasswordValidationMsg(validator.passwordInvalidMessage);
       validForm = false;
-    } else setPasswordValidationMsg('');
+    } else setPasswordValidationMsg("");
 
     return validForm;
-  }
+  };
 
   const onSubmit = () => {
-    setErrorMsg('');
+    setErrorMsg("");
     if (isValidFormData()) mutate(formData);
   };
 
@@ -74,7 +74,7 @@ function SignUp() {
                 setFormData({ ...formData, username: e.target.value })
               }
             />
-            <Text style={{ color: 'red' }}>{ usernameValidationMsg }</Text>
+            <Text style={{ color: "red" }}>{usernameValidationMsg}</Text>
             <Text align="left" size="2" weight="bold">
               Password
             </Text>
@@ -86,8 +86,8 @@ function SignUp() {
                 setFormData({ ...formData, password: e.target.value })
               }
             />
-            <Text style={{ color: 'red' }}>{ passwordValidationMsg }</Text>
-            <Text>{ errorMsg }</Text>
+            <Text style={{ color: "red" }}>{passwordValidationMsg}</Text>
+            <Text>{errorMsg}</Text>
             <Button color="crimson" mt="4" onClick={() => onSubmit()}>
               Create Account
             </Button>

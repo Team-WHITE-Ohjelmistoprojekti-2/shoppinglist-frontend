@@ -2,28 +2,27 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editShoppinglist, getShoppinglistById } from "../../API/Apis";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Button, TextField } from "@radix-ui/themes";
-import '@radix-ui/themes/styles.css';
+import "@radix-ui/themes/styles.css";
 import useAuthEffect from "../UseAuthEffect";
 
-function EditList({isAuthenticated}) {
+function EditList({ isAuthenticated }) {
   let navigate = useNavigate();
   useAuthEffect(isAuthenticated);
   const { id } = useParams();
   const queryClient = useQueryClient();
- /* useEffect(() => {
+  /* useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login');
     }
   }, [isAuthenticated, navigate]);*/
   const {
-     isLoading,
-     isError,
-     data: shoppinglist,
-     error
-     } 
-     = useQuery({
+    isLoading,
+    isError,
+    data: shoppinglist,
+    error,
+  } = useQuery({
     queryKey: ["shoppinglists", id],
     queryFn: () => getShoppinglistById(id),
   });
@@ -72,13 +71,13 @@ function EditList({isAuthenticated}) {
   return (
     <div className="edit-form">
       <h2>Edit List</h2>
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <TextField.Root>
-            <TextField.Slot>
-            </TextField.Slot>
-            <TextField.Input variant="soft"
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <TextField.Root>
+            <TextField.Slot></TextField.Slot>
+            <TextField.Input
+              variant="soft"
               type="text"
               id="name"
               name="name"
@@ -86,17 +85,19 @@ function EditList({isAuthenticated}) {
               onChange={(e) => onInputChange(e)}
               required
             />
-            </TextField.Root>
-          </div>
-          <Button type="submit" style={{marginRight: 20}}>Submit</Button>
-          <Button type="button" onClick={handleCancel}>
-            Cancel
-          </Button>
-        </form>
+          </TextField.Root>
+        </div>
+        <Button type="submit" style={{ marginRight: 20 }}>
+          Submit
+        </Button>
+        <Button type="button" onClick={handleCancel}>
+          Cancel
+        </Button>
+      </form>
     </div>
   );
 }
 EditList.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired
-}
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 export default EditList;

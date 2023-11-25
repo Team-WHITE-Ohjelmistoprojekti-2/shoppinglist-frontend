@@ -1,5 +1,5 @@
 import { Text, Theme, Flex } from "@radix-ui/themes";
-import { CheckIcon } from '@radix-ui/react-icons'
+import { CheckIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 
 // User will be forwarded to this after creating account
@@ -15,7 +15,10 @@ function SignUpConfirm() {
             Account created successfully
           </Text>
           <Text align="center" mt="3" size="3">
-            <Link to="/login" style={{ textDecoration: 'underline' }}>Login</Link> to your account
+            <Link to="/login" style={{ textDecoration: "underline" }}>
+              Login
+            </Link>{" "}
+            to your account
           </Text>
         </Flex>
       </Theme>

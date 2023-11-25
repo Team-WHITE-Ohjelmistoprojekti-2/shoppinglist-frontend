@@ -6,9 +6,9 @@ import { API_URL } from "../../constants";
 import { IconButton, Table, Heading, Theme } from "@radix-ui/themes";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import useAuthEffect from "../UseAuthEffect";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function ShoppingList({isAuthenticated}) {
+function ShoppingList({ isAuthenticated }) {
   useAuthEffect(isAuthenticated);
   const { id: shoppinglistId } = useParams();
   const [product, setProduct] = useState([]);
@@ -65,13 +65,15 @@ function ShoppingList({isAuthenticated}) {
         <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
       </Table.Row>
     </Table.Header>
-  )
+  );
 
   const listItems = product.map((product) => (
     <Table.Row key={product.id} align="center">
       <Table.Cell>{product.name}</Table.Cell>
       <Table.Cell>{product.quantity == 0 ? "1" : product.quantity}</Table.Cell>
-      <Table.Cell>{product.price == null ? "" : product.price + "€"}</Table.Cell>
+      <Table.Cell>
+        {product.price == null ? "" : product.price + "€"}
+      </Table.Cell>
       <Table.Cell>{product.details}</Table.Cell>
       <Table.Cell>
         <Link to={`/edit/${product.id}`}>
@@ -115,6 +117,6 @@ function ShoppingList({isAuthenticated}) {
   );
 }
 ShoppingList.propTypes = {
-  isAuthenticated: PropTypes.bool
-}
+  isAuthenticated: PropTypes.bool,
+};
 export default ShoppingList;

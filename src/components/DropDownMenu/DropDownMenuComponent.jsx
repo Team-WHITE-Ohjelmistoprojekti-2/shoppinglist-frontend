@@ -1,8 +1,7 @@
-import React from 'react';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { HamburgerMenuIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import './dropdownMenu.css';
-import { ShoppingList } from '../ShoppingList';
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { HamburgerMenuIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import "./dropdownMenu.css";
+import { ShoppingList } from "../ShoppingList";
 
 const DropDownMenuComponent = () => {
   return (

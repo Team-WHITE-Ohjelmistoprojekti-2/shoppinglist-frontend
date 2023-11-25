@@ -1,10 +1,10 @@
 import { TextField, Flex, Text, Button, Theme, Card } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../API/Apis";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function Login({ setAuthenticated }) {
   const [errorMsg, setErrorMsg] = useState("");
@@ -24,10 +24,10 @@ function Login({ setAuthenticated }) {
         sessionStorage.setItem("jwt", jwtToken);
         setAuthenticated(true);
 
-        console.log('success bro!')
+        console.log("success bro!");
         queryClient.invalidateQueries(["registration"]);
         navigate(`/`);
-        return
+        return;
       }
 
       setErrorMsg("Failed to login");
@@ -40,7 +40,7 @@ function Login({ setAuthenticated }) {
 
   const handleLogin = () => {
     mutate(formData);
-  }
+  };
 
   return (
     <div>
@@ -89,7 +89,7 @@ function Login({ setAuthenticated }) {
 }
 
 Login.propTypes = {
-  setAuthenticated: PropTypes.func.isRequired
-}
+  setAuthenticated: PropTypes.func.isRequired,
+};
 
 export default Login;
