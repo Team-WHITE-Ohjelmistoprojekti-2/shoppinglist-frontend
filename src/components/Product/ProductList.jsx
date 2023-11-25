@@ -103,7 +103,13 @@ function ProductList({isAuthenticated}) {
   return (
     
     <Theme grayColor="sand" radius="large" scaling="95%">
-       
+      <p>Table color slider beta 0.3</p>
+      <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
+      
+      <Link className="button_borders" to={`/`}>
+          Back to main page
+        </Link>
+        <DropDownMenuComponent />
       <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
         <TableContainer component={Paper}>
           {/* Render the MuiTable component */}
@@ -115,22 +121,9 @@ function ProductList({isAuthenticated}) {
           />
         </TableContainer>
 
-       
       </div>
-      <p>Table color slider beta 0.2</p>
-        <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
-      <div> 
-
-      <Link className="button" to={`/`}>
-          View shoppinglists
-        </Link>
-      <DropDownMenuComponent />
-      <Link className="button" to={`/`}>
-          Add Products to shoppinglist
-        </Link>
+      <div>
         </div>
-
-
     </Theme>
   );
 }

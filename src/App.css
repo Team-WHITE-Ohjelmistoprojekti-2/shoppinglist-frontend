@@ -28,6 +28,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
+  overflow-x: auto;
 }
 
 thead th {
@@ -44,7 +45,7 @@ td {
   align-items: center;
   padding: 8px;
   text-align: left;
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -111,7 +112,25 @@ input {
   border-radius: 4px;
 }
 
+.button_borders {
+  background-color: rgb(64, 183, 205);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  margin-right: 1000px; 
+  margin-bottom: 10px; 
+}
+
+
 .button:hover {
+  background-color: rgb(125, 211, 215);
+}
+
+.button_borders:hover {
   background-color: rgb(125, 211, 215);
 }
 
@@ -184,5 +203,6 @@ input {
     padding: 8px 16px;
   }
 
-  
+
 }
+

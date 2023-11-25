@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { API_URL } from "../../constants";
-import { IconButton } from "@radix-ui/themes";
+import { IconButton, Table, Heading, Theme } from "@radix-ui/themes";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import useAuthEffect from "../UseAuthEffect";
 import PropTypes from 'prop-types';
@@ -55,32 +55,32 @@ function ShoppingList({isAuthenticated}) {
   };
 
   const tableHeader = (
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Details</th>
-        <th></th>
-        <th> </th>
-      </tr>
-    </thead>
-  );
+    <Table.Header>
+      <Table.Row>
+        <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell>Quantity</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell>Price</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell>Details</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
+      </Table.Row>
+    </Table.Header>
+  )
 
   const listItems = product.map((product) => (
-    <tr key={product.id}>
-      <td>{product.name}</td>
-      <td>{product.quantity == 0 ? "1" : product.quantity}</td>
-      <td>{product.price == null ? "" : product.price + "€"}</td>
-      <td>{product.details}</td>
-      <td>
+    <Table.Row key={product.id} align="center">
+      <Table.Cell>{product.name}</Table.Cell>
+      <Table.Cell>{product.quantity == 0 ? "1" : product.quantity}</Table.Cell>
+      <Table.Cell>{product.price == null ? "" : product.price + "€"}</Table.Cell>
+      <Table.Cell>{product.details}</Table.Cell>
+      <Table.Cell>
         <Link to={`/edit/${product.id}`}>
-          <IconButton variant="classic">
-            <Pencil1Icon width={20} height={20}></Pencil1Icon>
+          <IconButton variant="classic" size="3">
+            <Pencil1Icon width="24" height="24"></Pencil1Icon>
           </IconButton>
         </Link>
-      </td>
-      <td>
+      </Table.Cell>
+      <Table.Cell>
         <IconButton
           ml="1"
           color="red"
@@ -89,18 +89,18 @@ function ShoppingList({isAuthenticated}) {
         >
           <TrashIcon width="24" height="24" />
         </IconButton>
-      </td>
-    </tr>
+      </Table.Cell>
+    </Table.Row>
   ));
 
   console.log(product);
   return (
-    <div className="root-container">
-      <h1>{shoppinglistName}</h1>
-      <table>
+    <Theme>
+      <Heading size="7">{shoppinglistName}</Heading>
+      <Table.Root m="4">
         {tableHeader}
-        <tbody>{listItems}</tbody>
-      </table>
+        <Table.Body>{listItems}</Table.Body>
+      </Table.Root>
       <Link className="button" to={`/`}>
         View shoppinglists
       </Link>
@@ -111,7 +111,7 @@ function ShoppingList({isAuthenticated}) {
       >
         Add Product
       </Link>
-    </div>
+    </Theme>
   );
 }
 ShoppingList.propTypes = {
