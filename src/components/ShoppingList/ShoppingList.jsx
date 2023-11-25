@@ -5,8 +5,11 @@ import Swal from "sweetalert2";
 import { API_URL } from "../../constants";
 import { IconButton } from "@radix-ui/themes";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
+import useAuthEffect from "../UseAuthEffect";
+import PropTypes from 'prop-types';
 
-function ShoppingList() {
+function ShoppingList({isAuthenticated}) {
+  useAuthEffect(isAuthenticated);
   const { id: shoppinglistId } = useParams();
   const [product, setProduct] = useState([]);
   const [shoppinglistName, setShoppinglistName] = useState("");
@@ -111,5 +114,7 @@ function ShoppingList() {
     </div>
   );
 }
-
+ShoppingList.propTypes = {
+  isAuthenticated: PropTypes.bool
+}
 export default ShoppingList;

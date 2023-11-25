@@ -3,9 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ProductForm from "./ProductForm"; // Import the ProductForm component
 import { addProduct } from "../../API/Apis";
+import useAuthEffect from "../UseAuthEffect";
+import PropTypes from 'prop-types';
 
-function AddProduct() {
+function AddProduct({isAuthenticated}) {
   let navigate = useNavigate();
+  useAuthEffect(isAuthenticated);
+
   const { id } = useParams();
   const queryClient = useQueryClient();
 
@@ -59,5 +63,7 @@ function AddProduct() {
     />
   );
 }
-
+AddProduct.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired
+}
 export default AddProduct;

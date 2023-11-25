@@ -38,13 +38,13 @@ function App() {
       <div>
         <Router>
           <Routes>
-            <Route exact path="/productlist" element={<ProductList />} />
-            <Route exact path="/edit/:id" element={<EditProduct />} />
-            <Route exact path="/addproduct/:id" element={<AddProduct />} />
+            <Route exact path="/productlist" element={<ProductList isAuthenticated={isAuthenticated}/>} />
+            <Route exact path="/edit/:id" element={<EditProduct isAuthenticated={isAuthenticated}/>} />
+            <Route exact path="/addproduct/:id" element={<AddProduct isAuthenticated={isAuthenticated}/>} />
             <Route exact path="/" element={<ViewShoppinglists isAuthenticated={isAuthenticated} handleLogout={handleLogout} />} />
-            <Route exact path="/shoppinglist/:id" element={<ShoppingList />} />
-            <Route exact path="/addshoppinglist/" element={<AddList />} />
-            <Route exact path="/update/:id" element={<EditList />} />
+            <Route exact path="/shoppinglist/:id" element={<ShoppingList isAuthenticated={isAuthenticated}/>} />
+            <Route exact path="/addshoppinglist/" element={<AddList isAuthenticated={isAuthenticated}/>} />
+            <Route exact path="/update/:id" element={<EditList  isAuthenticated={isAuthenticated}/>} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route
               exact

@@ -10,8 +10,12 @@ import MuiTable from "./../MuiTable";
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import DropDownMenuComponent from "./../DropDownMenu";
+import useAuthEffect from "../UseAuthEffect";
+import PropTypes from 'prop-types';
 
-function ProductList() {
+
+function ProductList({isAuthenticated}) {
+  useAuthEffect(isAuthenticated);
   const [product, setProduct] = useState([]);
   const [backgroundColor, setBackgroundColor] = useState("white"); 
 
@@ -129,5 +133,8 @@ function ProductList() {
 
     </Theme>
   );
+}
+ProductList.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired
 }
 export default ProductList;

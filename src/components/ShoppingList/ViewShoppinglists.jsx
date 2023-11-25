@@ -1,6 +1,7 @@
 import {} from "@radix-ui/react-portal"; // Radix-UI items here
+//import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, /*useNavigate*/ } from "react-router-dom";
 import { Theme, IconButton, Flex, Button, Text, Card, ScrollArea } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import dayjs from "dayjs";
@@ -14,9 +15,16 @@ import { Fragment } from "react";
 dayjs.extend(utc);
 
 function ViewShoppinglists({isAuthenticated, handleLogout}) {
-
+  //const navigate = useNavigate();
   const queryClient = useQueryClient();
-
+  
+  /*useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);*/
+ 
+ 
   const {
     isLoading,
     isError,
@@ -92,6 +100,7 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
         <Button size="3" color="cyan" style={{ color: "black" }}>View Shoppinglist</Button>
       </Link>
 
+      {isAuthenticated && (
       <IconButton
         ml="1"
         color="red"
@@ -100,6 +109,7 @@ function ViewShoppinglists({isAuthenticated, handleLogout}) {
       >
         <TrashIcon width="24" height="24" />
       </IconButton>
+    )}
     </Card>
   ));
 

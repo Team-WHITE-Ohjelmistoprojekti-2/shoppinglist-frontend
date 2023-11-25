@@ -1,6 +1,12 @@
 import axios from "axios";
 import { API_URL } from "../constants";
 
+/*axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  config.headers.Authorization = sessionStorage.getItem("jwt");
+  return config;
+});*/
+
 //SHOPPINGLIST
 export const getShoppinglistById = async (id) => {
   try {

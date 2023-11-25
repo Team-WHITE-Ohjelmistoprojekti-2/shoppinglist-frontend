@@ -2,13 +2,21 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editShoppinglist, getShoppinglistById } from "../../API/Apis";
+import PropTypes from 'prop-types';
 import { Button, TextField } from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
+import useAuthEffect from "../UseAuthEffect";
 
-function EditList() {
+function EditList({isAuthenticated}) {
   let navigate = useNavigate();
+  useAuthEffect(isAuthenticated);
   const { id } = useParams();
   const queryClient = useQueryClient();
+ /* useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);*/
   const {
      isLoading,
      isError,
@@ -88,5 +96,7 @@ function EditList() {
     </div>
   );
 }
-
+EditList.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired
+}
 export default EditList;

@@ -4,9 +4,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addShoppinglist} from "../../API/Apis";
 import { Button, TextField } from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
+import PropTypes from 'prop-types';
+import useAuthEffect from "../UseAuthEffect";
 
-function AddList() {
+function AddList({isAuthenticated}) {
   let navigate = useNavigate();
+  useAuthEffect(isAuthenticated);
+  
   const queryClient = useQueryClient();
 
   const [list, setList] = useState({
@@ -67,5 +71,7 @@ function AddList() {
     </div>
   );
 }
-
+AddList.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired
+}
 export default AddList;

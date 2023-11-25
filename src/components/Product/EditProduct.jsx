@@ -3,9 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { editProduct, getProductById } from "../../API/Apis";
 import ProductForm from "./ProductForm"; 
+import useAuthEffect from "../UseAuthEffect";
+import PropTypes from 'prop-types';
 
-function EditProduct() {
+function EditProduct({isAuthenticated}) {
   let navigate = useNavigate();
+  useAuthEffect(isAuthenticated);
   const { id} = useParams();
   const queryClient = useQueryClient();
   const {
@@ -76,5 +79,7 @@ function EditProduct() {
   />
   );
 }
-
+EditProduct.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired
+}
 export default EditProduct;
