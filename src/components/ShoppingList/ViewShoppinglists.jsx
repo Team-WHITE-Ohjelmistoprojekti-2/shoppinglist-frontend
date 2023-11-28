@@ -171,7 +171,7 @@ function ViewShoppinglists({ isAuthenticated, handleLogout }) {
 }
 
 ViewShoppinglists.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
   handleLogout: PropTypes.func.isRequired,
 };
 

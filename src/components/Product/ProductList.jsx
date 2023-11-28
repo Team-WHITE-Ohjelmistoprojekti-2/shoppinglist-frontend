@@ -129,6 +129,6 @@ function ProductList({ isAuthenticated }) {
   );
 }
 ProductList.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 export default ProductList;

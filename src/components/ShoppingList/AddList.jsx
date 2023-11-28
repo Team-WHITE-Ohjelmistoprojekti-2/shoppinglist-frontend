@@ -75,6 +75,6 @@ function AddList({ isAuthenticated }) {
   );
 }
 AddList.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 export default AddList;

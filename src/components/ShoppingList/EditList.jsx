@@ -98,6 +98,6 @@ function EditList({ isAuthenticated }) {
   );
 }
 EditList.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 export default EditList;

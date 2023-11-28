@@ -79,6 +79,6 @@ function EditProduct({ isAuthenticated }) {
   );
 }
 EditProduct.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 export default EditProduct;
