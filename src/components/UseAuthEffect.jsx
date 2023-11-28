@@ -5,7 +5,7 @@ const useAuthEffect = (isAuthenticated) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated === false ) {
+    if (isAuthenticated != true ) {
       navigate("/login");
     }
   }, [isAuthenticated, navigate]);
