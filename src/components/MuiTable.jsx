@@ -2,13 +2,16 @@ import PropTypes from "prop-types";
 import { IconButton } from "@radix-ui/themes";
 import { TrashIcon } from "@radix-ui/react-icons";
 import CheckboxComponent from "./CheckboxComponent"; // Import CheckboxComponent
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Tooltip
+} from '@mui/material';
 
 const MuiTable = (props) => {
   const { productData, deleteProduct, backgroundColor } = props;
@@ -48,8 +51,10 @@ const MuiTable = (props) => {
                 {/* Render CheckboxComponent and TrashIcon in the same TableCell */}
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <CheckboxComponent
+                    id = {product.id}
                     label={product.name} /* otherProps={product.otherProps} */
                   />
+                  <Tooltip title="Delete">
                   <IconButton
                     ml="1"
                     color="red"
@@ -58,6 +63,7 @@ const MuiTable = (props) => {
                   >
                     <TrashIcon width="24" height="24" />
                   </IconButton>
+                  </Tooltip>
                 </div>
               </TableCell>
             </TableRow>
