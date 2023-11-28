@@ -12,17 +12,20 @@ import {
   Paper,
   Tooltip
 } from '@mui/material';
+import '../App.css';
+
 
 const MuiTable = (props) => {
   const { productData, deleteProduct, backgroundColor } = props;
 
   return (
     <TableContainer component={Paper}>
-      <Table
+      <Table 
         style={{
           fontFamily: "Arial",
           borderCollapse: "collapse",
           width: "100%",
+
         }}
       >
         <TableHead>

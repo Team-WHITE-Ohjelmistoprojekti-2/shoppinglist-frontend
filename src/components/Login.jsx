@@ -42,6 +42,13 @@ function Login({ setAuthenticated }) {
     mutate(formData);
   };
 
+  const handleKeyDown = (e) => {
+    // indentifies enter key press
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div>
       <Theme>
@@ -59,6 +66,7 @@ function Login({ setAuthenticated }) {
               onChange={(e) =>
                 setFormData({ ...formData, username: e.target.value })
               }
+              onKeyDown={handleKeyDown}
             />
             <Text align="left" size="2" weight="bold">
               Password
@@ -70,6 +78,7 @@ function Login({ setAuthenticated }) {
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
+              onKeyDown={handleKeyDown}
             />
             <Text mt="2">{errorMsg}</Text>
             <Button color="crimson" mt="4" onClick={() => handleLogin()}>

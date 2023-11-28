@@ -6,7 +6,6 @@ import { Button, TextField } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import PropTypes from "prop-types";
 import useAuthEffect from "../UseAuthEffect";
-import "@radix-ui/themes/styles.css";
 
 function AddList({ isAuthenticated }) {
   let navigate = useNavigate();

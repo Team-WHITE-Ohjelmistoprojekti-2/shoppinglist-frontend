@@ -54,6 +54,13 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.productListTable {
+  background-color: rgba(67, 110, 104, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

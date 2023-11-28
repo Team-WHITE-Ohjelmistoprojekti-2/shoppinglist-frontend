@@ -100,8 +100,9 @@ function ProductList({ isAuthenticated }) {
     return `rgba(${result.join(",")})`;
   }
   return (
-    <Theme grayColor="sand" radius="large" scaling="95%">
-      <p>Table color slider beta 0.3</p>
+    <Theme className="productListTable">
+    
+      <p>Table color slider beta 0.7</p>
       <RangeInput
         onValueChange={handleSliderChange}
         label="Background Opacity"
