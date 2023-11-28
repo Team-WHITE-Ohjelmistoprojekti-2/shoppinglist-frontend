@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 const queryClient = new QueryClient()
 
 function App() {
-  const [isAuthenticated, setAuthenticated] = useState(null);
+  const [isAuthenticated, setAuthenticated] = useState(true);
 
   // Remove JWT from session storage.
   const handleLogout = () => {
@@ -26,6 +26,7 @@ function App() {
   // Check for jwt token when opening app.
   // Does not actually validate it.
   useEffect(() => {
+    setAuthenticated(false)
     const jwtToken = sessionStorage.getItem("jwt");
     if (jwtToken != null) {
       setAuthenticated(true);
