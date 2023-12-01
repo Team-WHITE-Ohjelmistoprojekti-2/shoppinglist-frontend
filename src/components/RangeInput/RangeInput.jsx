@@ -42,6 +42,6 @@ export default RangeInput;
 
 RangeInput.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.arrayOf(PropTypes.number).isRequired,
+  value: PropTypes.arrayOf(PropTypes.number),
   onValueChange: PropTypes.func.isRequired,
 };

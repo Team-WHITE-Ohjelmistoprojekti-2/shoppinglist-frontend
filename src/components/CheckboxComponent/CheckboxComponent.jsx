@@ -13,8 +13,8 @@ const CheckboxComponent = ({ id }) => {
 
   const handleChange = () => {
     const newChecked = !isChecked;
-    console.log(newChecked)
-    setIsChecked(newChecked);
+/*     console.log(newChecked)
+ */    setIsChecked(newChecked);
     localStorage.setItem(localStorageKey, JSON.stringify(newChecked));
   };
 
@@ -47,6 +47,6 @@ const CheckboxComponent = ({ id }) => {
 
 
 CheckboxComponent.propTypes = {
-  id: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
 }
 export default CheckboxComponent;
