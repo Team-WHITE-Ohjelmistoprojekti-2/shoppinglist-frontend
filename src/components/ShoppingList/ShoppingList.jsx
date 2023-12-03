@@ -95,7 +95,10 @@ function ShoppingList({ isAuthenticated }) {
         </IconButton>
       </Table.Cell>
       <Table.Cell>
-        <CheckboxComponent></CheckboxComponent>
+        <CheckboxComponent
+        id = {product.id}
+                    label={product.name} /* otherProps={product.otherProps} */
+                  />
       </Table.Cell>
     </Table.Row>
   ));
