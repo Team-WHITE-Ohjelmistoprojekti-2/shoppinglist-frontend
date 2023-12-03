@@ -7,6 +7,7 @@ import { IconButton, Table, Heading, Theme } from "@radix-ui/themes";
 import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import useAuthEffect from "../UseAuthEffect";
 import PropTypes from "prop-types";
+import CheckboxComponent from "../CheckboxComponent";
 
 function ShoppingList({ isAuthenticated }) {
   useAuthEffect(isAuthenticated);
@@ -63,6 +64,7 @@ function ShoppingList({ isAuthenticated }) {
         <Table.ColumnHeaderCell>Details</Table.ColumnHeaderCell>
         <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
         <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell>Bought</Table.ColumnHeaderCell>
       </Table.Row>
     </Table.Header>
   );
@@ -91,6 +93,9 @@ function ShoppingList({ isAuthenticated }) {
         >
           <TrashIcon width="24" height="24" />
         </IconButton>
+      </Table.Cell>
+      <Table.Cell>
+        <CheckboxComponent></CheckboxComponent>
       </Table.Cell>
     </Table.Row>
   ));

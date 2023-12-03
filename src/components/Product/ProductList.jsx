@@ -9,7 +9,6 @@ import { Theme } from "@radix-ui/themes";
 import MuiTable from "./../MuiTable";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import DropDownMenuComponent from "./../DropDownMenu";
 import useAuthEffect from "../UseAuthEffect";
 import PropTypes from "prop-types";
 
@@ -102,7 +101,7 @@ function ProductList({ isAuthenticated }) {
   return (
     <Theme className="productListTable">
     
-      <p>Table color slider beta 0.7</p>
+      <p>List of all products</p>
       <RangeInput
         onValueChange={handleSliderChange}
         label="Background Opacity"
@@ -111,7 +110,6 @@ function ProductList({ isAuthenticated }) {
       <Link className="button_borders" to={`/`}>
         Back to main page
       </Link>
-      <DropDownMenuComponent />
       <div
         className="slider-container"
         style={{ overflowY: "scroll", height: "400px" }}
