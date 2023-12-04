@@ -1,10 +1,6 @@
-
-import React from 'react';
 import PropTypes from 'prop-types';
-import { API_URL } from '../../constants';
 import Swal from 'sweetalert2';
 import './ConfirmButton.css';
-
 
 const ConfirmButton = ({ checkedProducts, onConfirm }) => {
   const handleConfirm = async () => {
