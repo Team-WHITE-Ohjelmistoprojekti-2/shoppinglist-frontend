@@ -2,7 +2,7 @@
 
 This is the frontend application for the shoppinglist project. It is developed with JavaScript, React and Vite. We also have support for Docker and Docker Compose.
 
-Run locally in development mode 
+Run locally in development mode. 
 
 ```bash
 cd shoppinglist-frontend
