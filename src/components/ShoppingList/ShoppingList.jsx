@@ -8,6 +8,7 @@ import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import useAuthEffect from "../UseAuthEffect";
 import PropTypes from "prop-types";
 import CheckboxComponent from "../CheckboxComponent";
+import './shoppinglist.css';
 
 function ShoppingList({ isAuthenticated }) {
   useAuthEffect(isAuthenticated);

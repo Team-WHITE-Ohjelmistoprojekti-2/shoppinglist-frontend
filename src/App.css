@@ -198,7 +198,16 @@ input {
   color: #888;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .root-container {
+    margin: 0;
+  }
+
+  .button_borders {
+    width: 60%; /* Make the button take the full width */
+    margin-right: 0; /* Remove right margin on smaller screens */
+  }
+
   table {
     font-size: 14px;
   }

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { IconButton } from "@radix-ui/themes";
 import { TrashIcon } from "@radix-ui/react-icons";
-import CheckboxComponent from "./CheckboxComponent"; // Import CheckboxComponent
+import CheckboxComponent from "./CheckboxComponent";
 import {
   Table,
   TableBody,
@@ -10,22 +10,22 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Tooltip
-} from '@mui/material';
-import '../App.css';
-
+  Tooltip,
+} from "@mui/material";
+import "../App.css";
 
 const MuiTable = (props) => {
   const { productData, deleteProduct, backgroundColor } = props;
 
   return (
-    <TableContainer component={Paper}>
-      <Table 
+    <TableContainer component={Paper} sx={{ overflowX: "auto" }}>
+      <Table
         style={{
           fontFamily: "Arial",
           borderCollapse: "collapse",
+          minWidth: 650,
           width: "100%",
-
+          
         }}
       >
         <TableHead>
@@ -54,18 +54,19 @@ const MuiTable = (props) => {
                 {/* Render CheckboxComponent and TrashIcon in the same TableCell */}
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <CheckboxComponent
-                    id = {product.id}
-                    label={product.name} /* otherProps={product.otherProps} */
+                    id={product.id}
+                    label={product.name}
+                    /* otherProps={product.otherProps} */
                   />
                   <Tooltip title="Delete">
-                  <IconButton
-                    ml="1"
-                    color="red"
-                    size="3"
-                    onClick={() => deleteProduct(product.id)}
-                  >
-                    <TrashIcon width="24" height="24" />
-                  </IconButton>
+                    <IconButton
+                      ml="1"
+                      color="red"
+                      size="3"
+                      onClick={() => deleteProduct(product.id)}
+                    >
+                      <TrashIcon width="24" height="24" />
+                    </IconButton>
                   </Tooltip>
                 </div>
               </TableCell>

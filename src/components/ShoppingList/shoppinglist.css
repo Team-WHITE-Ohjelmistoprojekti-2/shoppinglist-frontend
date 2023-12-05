@@ -1,0 +1,23 @@
+/* shoppinglist.css */
+
+/* Normal styles for larger screens */
+.table-header {
+    font-weight: bold;
+    background-color: #5e5959;
+    /* Add any other styles for header cells */
+  }
+  
+  .table-cell {
+    /* Add styles for regular cells */
+  }
+  
+  /* Responsive styles for smaller screens */
+  @media (max-width: 768px) {
+    .table-header {
+      /* Adjust styles for header cells on smaller screens */
+    }
+  
+    .table-cell {
+      /* Adjust styles for regular cells on smaller screens */
+    }
+  }

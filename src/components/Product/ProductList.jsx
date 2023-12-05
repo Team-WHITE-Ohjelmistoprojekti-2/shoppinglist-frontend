@@ -102,11 +102,11 @@ function ProductList({ isAuthenticated }) {
 
   return (
     <Theme className="productListTable">
+      <Link className="button_borders" to={`/`}>
+      Back to the main page
+      </Link>
       <p>List of all products</p>
       <RangeInput onValueChange={handleSliderChange} label="Background Opacity" />
-      <Link className="button_borders" to={`/`}>
-        Back to the main page
-      </Link>
       <div className="slider-container" style={{ overflowY: 'scroll', height: '400px' }}>
         <TableContainer component={Paper}>
           {/* Render the MuiTable component */}

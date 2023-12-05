@@ -59,6 +59,7 @@ button:focus-visible {
   padding: 20px;
   border-radius: 10px;
   width: 100%;
+  overflow-x: auto; /* Fix: Remove quotes around auto */
 }
 
 @media (prefers-color-scheme: light) {
@@ -71,5 +72,11 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+
+  @media screen and (max-width: 800px) {
+    .productListTable {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
   }
 }
