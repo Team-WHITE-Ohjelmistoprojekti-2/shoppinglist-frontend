@@ -8,7 +8,6 @@ import { TrashIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import useAuthEffect from "../UseAuthEffect";
 import PropTypes from "prop-types";
 import CheckboxComponent from "../CheckboxComponent";
-import './shoppinglist.css';
 
 function ShoppingList({ isAuthenticated }) {
   useAuthEffect(isAuthenticated);
@@ -108,24 +107,29 @@ function ShoppingList({ isAuthenticated }) {
   return (
     <Theme>
       <Heading size="7">{shoppinglistName}</Heading>
-      <Table.Root m="4">
+      <Table.Root m="2" sx={{ overflowX: 'auto' }}>
         {tableHeader}
         <Table.Body>{listItems}</Table.Body>
       </Table.Root>
-      <Link className="button" to={`/`}>
-        View shoppinglists
-      </Link>
-      <Link
-        className="button"
-        style={{ marginLeft: 20 }}
-        to={`/addproduct/${shoppinglistId}`}
-      >
-        Add Product
-      </Link>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+        <Link className="button" to={`/`}>
+          View shoppinglists
+        </Link>
+        <Link
+          className="button"
+          style={{ marginLeft: 20 }}
+          to={`/addproduct/${shoppinglistId}`}
+        >
+          Add Product
+        </Link>
+      </div>
     </Theme>
   );
 }
+
+
 ShoppingList.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
+
 export default ShoppingList;
