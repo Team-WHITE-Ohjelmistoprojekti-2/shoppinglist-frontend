@@ -2,6 +2,25 @@
 
 This is the frontend application for the shoppinglist project. It is developed with JavaScript, React and Vite. We also have support for Docker and Docker Compose.
 
+Run locally in development mode 
+
+```bash
+cd shoppinglist-frontend
+```
+```bash
+npm start
+```
+
+# How to change backend API URL
+
+Create .env file to the project root
+
+Add the following line to the file
+
+`VITE_API_URL=YOURAPIURL`
+
+Replace YOURAPIURL with the actual API URL.
+
 # How to run with Docker
 
 The easiest way is to use Docker Compose. It uses the `docker-compose.yml` file found in the repository root.
